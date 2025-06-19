@@ -1,35 +1,35 @@
 <template>
     <div class="footer titillium-web-regular">
        <div class="footer__container1">
-              <div class="footer__container1__grid">
-                <div class="footer__container1_grid_item titillium-web-semibold">Navigate</div>
-                <div class="footer__container1_grid_item titillium-web-semibold">Collection</div>
-                <div class="footer__container1_grid_item titillium-web-semibold">Categories</div>
-                <a v-for="(value, index) in values" class="footer__container1_grid_pages" :key="index">
+              <div class="footer__grid">
+                <div class="footer__item titillium-web-semibold">Navigate</div>
+                <div class="footer__item titillium-web-semibold">Collection</div>
+                <div class="footer__item titillium-web-semibold">Categories</div>
+                <a v-for="(value, index) in values" class="footer__pages" :key="index">
                     {{ value }}
                 </a>
         
                   </div>
 
-           <div class="footer__container1__address">
-                <div class= footer__container1__address__title>
+           <div class="footer__address">
+                <div class= footer__title>
                     399 Crowfield Road, 
                 </div>
-                <div class= footer__container1__address__subtitle>
+                <div class= footer__subtitle>
                     Phoenix, Arizona 85012
                 </div>
-                <div class= footer__container1__address__email>
+                <div class= footer__email>
                    asff@fdsfsdc.com
                 </div>
-                <div class= footer__container1__address__contact>
+                <div class= footer__contact>
                    +602-926-5809
                 </div>
            </div>
        </div>
 
        <div class="footer__container2">
-            <div v-html="copyright" id="footer__container2__copyright"></div>
-            <div  class="footer__container2__social">
+            <div v-html="copyright" class="footer__copyright"></div>
+            <div  class="footer__social">
                 <div class="titillium-web-bold">Get social</div>
                 <i class="fa fa-twitter" ></i>
                 <svg  xmlns="http://www.w3.org/2000/svg" width=20 height=20 fill="currentColor" class="bi bi-pinterest" viewBox="0 0 16 16">
@@ -68,53 +68,51 @@ export default class Footer extends Vue{
     height:max-content;
     bottom:0;
     margin-top:auto;
-}
-
-.footer__container1{
+&__container1{
     display:flex;
     justify-content: space-between;
     padding:40px 100px 20px 100px;
     flex-wrap: wrap; 
     gap: 30px; 
 }
-.footer__container1__grid {
+&__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   row-gap:13px;
   column-gap: 80px;
 }
 
-.footer__container1_grid_pages{
+&__pages{
     width:max-content
 }
 
 
-.footer__container1__address{
+&__address{
     display:flex;
     flex-direction:column;
 
 }
-.footer__container1__address__title{
+&__title{
     font-size:20px;
     align-self: end;
     display: flex;
     flex-wrap:wrap;
 }
 
-.footer__container1__address__subtitle{
+&__subtitle{
      font-size:20px;
 }
 
-.footer__container1__address__email{
+&__email{
     align-self: end;
     color:#1c7eda;
 }
 
-.footer__container1__address__contact{
+&__contact{
     align-self:end;
 }
 
-.footer__container2{
+&__container2{
  display:flex;
  justify-content: space-between;
  align-items: center;
@@ -122,19 +120,22 @@ export default class Footer extends Vue{
  font-size: 18px;
  gap:20px;
 }
-#footer__container2__copyright{
+
+&__copyright{
     font-size:14px;
 }
 
-.footer__container2__social{
+&__social{
   display: flex;
   justify-content:center;
   align-items: center;
   gap:5px;
   flex-wrap:wrap;
 }
-.footer__container1_grid_pages{
+
+&__pages{
     cursor:pointer;
+}
 }
 .fa-twitter{
     color:#b7d5f1;
@@ -160,14 +161,14 @@ export default class Footer extends Vue{
 
 
 
-  .footer__container1__address__contact,
-  .footer__container1__address__email,
-  .footer__container1__address__subtitle,
-  .footer__container1__address__title{
+  .footer__contact,
+  .footer__email,
+  .footer__subtitle,
+  .footer__title{
     align-self: start;
   }
 
-  .footer__container1__address {
+  .footer__address {
     align-items: center;
   }
 

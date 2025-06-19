@@ -3,16 +3,16 @@
 <div class="header titillium-web-regular">
 <button class="header__menu"
 :class="{ 'header__menu-active': cart_selected }">
-     <div class="header__menu__bar">
+     <div class="header__bar">
      </div>
-     <div class="header__menu__bar">
+     <div class="header__bar">
      </div>
-     <div class="header__menu__bar">
+     <div class="header__bar">
      </div>
     </button>
     <div class="header__left" v-if="!cart_selected">
-    <img src="../assets/logo.png" class="header__left__logo"/>
-    <div class="header__left__links">
+    <img src="../assets/logo.png" class="header__logo"/>
+    <div class="header__links">
       <a>Home</a>
        <a>Products</a>
         <a>Contact us</a>
@@ -20,23 +20,23 @@
     </div>
     <div class="header__right" v-if="!cart_selected">
     <a >Sign In</a>
-    <button @click="cart_selected=true" class="header__right__cart">
-    <img class="header_right__cart__logo" src="../assets/shopping-cart.png"/>
+    <button @click="cart_selected=true" class="header__button">
+    <img class="header__cart" src="../assets/shopping-cart.png"/>
     </button>
   </div>
 </div>
-  <CartDrawer v-if="cart_selected" :visible="cart_selected" @close="cart_selected = false" />
+  <cartDrawer v-if="cart_selected" :visible="cart_selected" @close="cart_selected = false" />
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import CartDrawer from './CartDrawer.vue';
+import cartDrawer from './cartDrawer.vue';
 
 @Options({
 
  components: {
-    CartDrawer
+    cartDrawer
   },
   data() {
     return {
@@ -61,9 +61,8 @@ export default class Header extends Vue {
   padding:2px 10px;
   color: #2c3e50;
   border-bottom: 1px solid #ccc;
-}
 
-.header__menu{
+  &__menu{
   display:block;
   margin:10px 10px;
   background-color: white;
@@ -71,40 +70,39 @@ export default class Header extends Vue {
   cursor:pointer;
 }
 
-.header__menu-active{
+&__menu-active{
   display:block !important;
   margin:10px 10px;
   background-color: white;
   border: none;
   cursor:pointer;
 }
- .header__menu__bar {
+&__bar {
   width: 30px;
   height: 2px;
   background-color: black;
   margin: 7px 0;
 }
 
-.header__left{
+&__left{
   display:flex;
   align-items: center;
   gap:50px;
 }
 
-.header__left__links{
+&__links{
   display: none;
   a{
     cursor: pointer;
   }
 }
 
-.header__left__logo{
+&__logo{
   width:60px;
 
 }
 
-
-.header__right{
+&__right{
   display: flex;
   align-items: center;
   gap: 10px;
@@ -113,25 +111,25 @@ export default class Header extends Vue {
   }
 }
 
-.header__right__cart{
+&__button{
   background-color: transparent;
   border: none;
   cursor: pointer;
 
 }
-.header_right__cart__logo{
+&__cart{
   width:35px;
   height:35px;
 
 }
-
+}
 
 
 @media screen and (min-width:1000px) {
   .header__menu{
     display:none;
   }
-  .header__left__links{
+  .header__links{
     display: flex;
     gap: 40px;
   }

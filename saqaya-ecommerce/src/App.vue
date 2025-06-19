@@ -1,7 +1,8 @@
 <template>
   <div id="nav" class="titillium-web-regular">
-   <Header></Header>
-   <Footer></Footer>
+   <pageHeader></pageHeader>
+   <productPage></productPage>
+   <pageFooter></pageFooter>
   </div>
   <router-view/>
 </template>
@@ -9,14 +10,16 @@
 <script lang="ts">
 
 import { defineComponent } from 'vue';
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
+import pageHeader from './components/pageHeader.vue';
+import pageFooter from './components/pageFooter.vue';
+import productPage from './views/productPage.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    Header,
-    Footer
+    pageHeader,
+    pageFooter,
+    productPage
   }
 });
 
