@@ -1,74 +1,60 @@
 <template>
-  <productsHeader></productsHeader>
-  <div class="products">
-   <div class="products__product" v-for="product in products" :key="product.id">
+  <div class="stretch">
+  <div class="product">
     <productCard
-      :product="product"
-    />
-    </div>
-  </div>
+      :product="product" :clickable="false"></productCard>
+    <productDescription :product="product"></productDescription>
+    </div> </div>
 </template>
 
 <script>
 import productCard from '../components/productCard.vue'
-import productsHeader from '../components/productsHeader.vue'
-import axios from 'axios'
+import productDescription from '../components/productDescription.vue';
 
 export default {
   name: 'productPage',
   components: {
     productCard,
-    productsHeader
+    productDescription
   },
-  data() {
-    return {
-      products: []
-    }
+  props: {
+    clickable: {
+      type: Boolean,
+      required: true
+    },
+
   },
+  computed:{
+    
+  product() {
+    const productId = this.$route.params.id;
+    return this.$store.state.products.find(p => p.id == productId);
+  
+
+  }
+}
+  ,
   created() {
-    axios.get('https://fakestoreapi.com/products')
-      .then(response => {
-        this.products = response.data
-      })
-      .catch(error => {
-        console.error('Error fetching products:', error)
-      })
+    this.$store.dispatch('loadProducts')
+     
   }
 }
 </script>
 
 <style scoped lang="scss">
-.products{
-  display:flex;
-  flex-direction: row;
-  gap:50;
-  padding:20px;
-  flex-wrap: wrap;
+.stretch{
+  height: 400px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-
-  &__product{
-    display:flex;
-    justify-content:center;
-    width:20%;
-    margin-bottom:20px;
-
-  
-  }
 }
 
-@media screen and (max-width: 800px) {
-  .products__product {
-    width: 30%;
-  }
-}
+.product{
+  display:flex;
+  align-items:center;
+  margin:25px 0 25px 0;
+  height: 400px;
 
-@media screen and (max-width: 600px) {
-  .products__product {
-    width: 50%;
-  }
-  
-  
 }
 
 </style>

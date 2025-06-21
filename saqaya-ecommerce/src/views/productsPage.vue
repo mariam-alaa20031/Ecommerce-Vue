@@ -3,7 +3,7 @@
   <div class="products">
    <div class="products__product" v-for="product in products" :key="product.id">
     <productCard
-      :product="product"
+      :product="product" :clickable="true"
     />
     </div>
   </div>
@@ -12,7 +12,7 @@
 <script>
 import productCard from '../components/productCard.vue'
 import productsHeader from '../components/productsHeader.vue'
-import axios from 'axios'
+
 
 export default {
   name: 'productsPage',
@@ -20,20 +20,22 @@ export default {
     productCard,
     productsHeader
   },
-  data() {
-    return {
-      products: []
+  props:{
+    clickable:{
+      type:Boolean,
+      required:false
     }
   },
-  created() {
-    axios.get('https://fakestoreapi.com/products')
-      .then(response => {
-        this.products = response.data
-      })
-      .catch(error => {
-        console.error('Error fetching products:', error)
-      })
+  computed:{
+      products() {
+        return this.$store.state.products;
+      }
+  
+  },
+  created(){
+    this.$store.dispatch('loadProducts');
   }
+
 }
 </script>
 
