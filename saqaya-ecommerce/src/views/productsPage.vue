@@ -1,4 +1,5 @@
 <template>
+  <productsHeader></productsHeader>
   <div class="products">
    <div class="products__product" v-for="product in products" :key="product.id">
     <productCard
@@ -11,12 +12,14 @@
 
 <script>
 import productCard from '../components/productCard.vue'
+import productsHeader from '../components/productsHeader.vue'
 import axios from 'axios'
 
 export default {
-  name: 'productDisplay',
+  name: 'productsPage',
   components: {
-    productCard
+    productCard,
+    productsHeader
   },
   data() {
     return {

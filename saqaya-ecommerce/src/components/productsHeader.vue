@@ -1,0 +1,53 @@
+<template>
+<div class="header titillium-web-regular">
+    <div class="description titillium-web-semibold">
+        <h1>Products</h1>
+        <p>Step into the world of Haelora — where fashion meets meaning. Whether it's a handcrafted ring or a flowy statement piece, every item in our collection is designed to reflect the light in you. Wear your story with confidence, grace, and a touch of everyday magic.</p>
+    </div>
+</div>
+</template>
+
+<script lang="ts">
+import { defineComponent} from 'vue'
+
+export default defineComponent({
+
+  name:"productsHeader",
+  components:{
+  },
+ 
+
+  
+
+})
+
+</script>
+
+<style scoped lang="scss">
+.header{
+    background-color:  #ffffff;
+}
+.description{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height:300px;
+    padding: 20px;
+    text-align: left;
+    margin:0 90px 20px 90px;
+    border-bottom: 1px solid rgb(237, 233, 237);
+    
+    h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+        max-width:70%;
+    }
+}
+
+</style>

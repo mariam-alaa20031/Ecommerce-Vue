@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Contact from '../views/Contact.vue'
-import productPage from '../views/productPage.vue'
+import productsPage from '../views/productsPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path:'/products',
     name: 'products',
-    component: productPage
+    component: productsPage
   }
 ]
 
