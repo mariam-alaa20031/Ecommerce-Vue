@@ -33,20 +33,30 @@ export default defineComponent({
 .view{
   cursor: pointer;
   padding: 10px;
-  border-color: rgb(255, 245, 234);
   height:150px;
-  width:100px;
-}
-.view__card{
+  width:150px;
+  border:solid rgb(255, 255, 255);
+  border-radius: 50%;
+  background-color: white;
+  
+  &:hover{
+       box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+       transform: scale(1.05) scale(1.05);
+       transition: transform 0.2s ease-in-out;
+    }
+
+
+&__card{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height:100%;
+  justify-content: space-between;
+  align-items:center;
 
 &-img{
   width:60px;
 }
-
+}
 }
 
 

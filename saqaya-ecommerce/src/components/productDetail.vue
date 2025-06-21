@@ -1,6 +1,6 @@
 <template>
 
-<div class="details titillium-web-regular">
+<div class="details titillium-web-semibold">
 
   <div class="details__price" v-html="price +' EGP'">
      
@@ -35,7 +35,9 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
 
-
+&__price{
+    font-size:15px;
+}
 
 }
 

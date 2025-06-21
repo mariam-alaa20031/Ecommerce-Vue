@@ -46,9 +46,27 @@ export default {
   align-items: center;
 
   &__product{
-
+    display:flex;
+    justify-content:center;
     width:20%;
-    margin-bottom:15px;
+    margin-bottom:20px;
+
+  
   }
 }
+
+@media screen and (max-width: 800px) {
+  .products__product {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .products__product {
+    width: 50%;
+  }
+  
+  
+}
+
 </style>

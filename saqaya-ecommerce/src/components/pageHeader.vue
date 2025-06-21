@@ -13,9 +13,12 @@
     <div class="header__left" v-if="!cart_selected">
     <img src="../assets/logo.png" class="header__logo"/>
     <div class="header__links">
-      <a>Home</a>
-       <a>Products</a>
-        <a>Contact us</a>
+      <a @click="clickLink('home')" 
+      :class="clickedHome?'links__active':'links__default'" href="#/">Home</a>
+       <a @click="clickLink('products')"
+       :class="clickedProducts?'links__active':'links__default'" href="#/products">Products</a>
+        <a @click="clickLink('contact')"
+        :class="clickedContact?'links__active':'links__default'" href="#/contactUs">Contact us</a>
     </div>
     </div>
     <div class="header__right" v-if="!cart_selected">
@@ -40,10 +43,37 @@ import cartDrawer from './cartDrawer.vue';
   },
   data() {
     return {
-      cart_selected: false
+      cart_selected: false,
+      clickedHome:false,
+      clickedProducts:false,
+      clickedContact:false,
+
     };
   }
-
+,
+methods: {
+  clickLink(link: string) {
+      switch (link) {
+        case 'home':
+          this.clickedHome = true;
+          this.clickedProducts = false;
+          this.clickedContact = false;
+          break;
+        case 'products':
+          this.clickedHome = false;
+          this.clickedProducts = true;
+          this.clickedContact = false;
+          break;
+        case 'contact':
+          this.clickedHome = false; 
+          this.clickedProducts = false;
+          this.clickedContact = true;
+          break;
+        default:
+          break;
+      }
+    }
+}
 })
 export default class Header extends Vue {
 
@@ -92,10 +122,15 @@ export default class Header extends Vue {
 
 &__links{
   display: none;
-  a{
+  &a{
     cursor: pointer;
+    
   }
+ 
+
+
 }
+
 
 &__logo{
   width:60px;
@@ -124,6 +159,18 @@ export default class Header extends Vue {
 }
 }
 
+.links__active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #acaef3;;
+}
+
+.links__default {
+  font-weight: normal;
+  text-decoration: none;
+  color: #2c3e50;
+}
+
 
 @media screen and (min-width:1000px) {
   .header__menu{
@@ -132,6 +179,10 @@ export default class Header extends Vue {
   .header__links{
     display: flex;
     gap: 40px;
+
+   
   }
 }
+
+
 </style>
