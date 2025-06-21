@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import productCard from '../components/productCard.vue'
+import productCard from '@components/productCard.vue'
 import productDescription from '../components/productDescription.vue';
 
 export default {

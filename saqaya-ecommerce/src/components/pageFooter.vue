@@ -44,9 +44,9 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { defineComponent } from 'vue';
 
-@Options({
+export default defineComponent({
     name:"Footer",
     data(){
         return {
@@ -56,9 +56,7 @@ import { Options, Vue } from 'vue-class-component';
     }
 })
 
-export default class Footer extends Vue{
 
-}
 </script>
 
 <style scoped lang="scss">

@@ -33,11 +33,11 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import cartDrawer from './cartDrawer.vue';
+import { defineComponent} from 'vue';
+import cartDrawer from '@/cartDrawer.vue';
 
-@Options({
-
+export default defineComponent({
+name: 'pageHeader',
  components: {
     cartDrawer
   },
@@ -75,9 +75,7 @@ methods: {
     }
 }
 })
-export default class Header extends Vue {
 
-}
 </script>
 
 <style scoped lang="scss">

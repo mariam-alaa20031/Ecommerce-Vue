@@ -32,7 +32,7 @@ export default defineComponent(
 
 <style scoped lang="scss">
 .description{
-    width:50%;
+    width:60%;
     &__title{
         font-size: 35px;
         color: black;

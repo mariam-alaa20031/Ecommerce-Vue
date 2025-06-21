@@ -96,7 +96,10 @@ export default defineComponent({
     }
 
     &--img{
+      border-radius: 0px;
       width:100px;
+      height:100px;
+      margin-bottom:5px;
     }}
       
   }
