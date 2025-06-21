@@ -17,6 +17,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import productPrice from "./productPrice.vue";
+
 export default defineComponent({
   name: "productCard",
   components: {
