@@ -1,9 +1,8 @@
 <template>
 
 <div class="details titillium-web-semibold">
-
-  <div class="details__price" v-html="price +' EGP'">
-     
+  <div class="details__price"
+  :class="!clickable? 'singleProductPage':''" v-html="price +' EGP'">   
   </div>
 
 
@@ -20,7 +19,8 @@ export default defineComponent({
 
   },
   props:{
-    price: {type: Number, required:true}
+    price: {type: Number, required:true},
+    clickable: {type: Boolean, default: true, required: false}
     
   }
 
@@ -43,6 +43,10 @@ export default defineComponent({
 
 }
 
-
+.singleProductPage{
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+}
 
 </style>

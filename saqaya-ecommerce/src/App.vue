@@ -17,7 +17,8 @@ export default defineComponent({
   components: {
     pageHeader,
     pageFooter,
-  }
+  },
+  
 });
 
 </script>
