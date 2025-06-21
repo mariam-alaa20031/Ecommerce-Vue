@@ -1,10 +1,10 @@
 <template>
-<button class="view"> 
+<router-link :to="`/product/${product.id}`" class="view">
 <div class="view__card">
-    <img class="view__card-img"  :src="image">
-    <productDetail :price="price"  ></productDetail>
+    <img class="view__card-img"  :src="product.image">
+    <productDetail :price="product.price"  ></productDetail>
 </div>
-</button> 
+</router-link>
 </template>
 
 <script lang="ts">
@@ -18,8 +18,10 @@ export default defineComponent({
     productDetail
   },
   props: {
-  image: { type: String, required: true },
-  price: { type: Number, required: true }
+  product: {
+    type: Object,
+    required: true
+  }
 }
 
   
@@ -38,7 +40,13 @@ export default defineComponent({
   border:solid rgb(255, 255, 255);
   border-radius: 50%;
   background-color: white;
-  
+  padding:15px;
+  color:black;
+  text-decoration: none;
+  :deep(*) {
+    text-decoration: none;
+    color: inherit;
+  }
   &:hover{
        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
        transform: scale(1.05) scale(1.05);
@@ -58,6 +66,8 @@ export default defineComponent({
 }
 }
 }
+
+
 
 
 </style>

@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Contact from '../views/Contact.vue'
 import productsPage from '../views/productsPage.vue'
+import productPage from '../views/productPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     path:'/products',
     name: 'products',
     component: productsPage
+  },
+   {
+    path:'/products/:id',
+    name: 'product',
+    component: productPage
   }
 ]
 

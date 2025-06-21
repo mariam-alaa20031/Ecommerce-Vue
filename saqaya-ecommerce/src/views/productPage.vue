@@ -15,7 +15,7 @@ import productsHeader from '../components/productsHeader.vue'
 import axios from 'axios'
 
 export default {
-  name: 'productsPage',
+  name: 'productPage',
   components: {
     productCard,
     productsHeader

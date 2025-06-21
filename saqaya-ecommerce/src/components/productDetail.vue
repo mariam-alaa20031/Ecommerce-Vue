@@ -37,6 +37,8 @@ export default defineComponent({
 
 &__price{
     font-size:15px;
+    color:black;
+    text-decoration: none;
 }
 
 }
