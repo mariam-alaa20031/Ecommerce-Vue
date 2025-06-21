@@ -47,7 +47,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name:"Footer",
+    name:"pageFooter",
     data(){
         return {
             values:["About Us", "New Arrivals", "Tables","Blog", "Featured","Lamps","Contact Us", "Catalog","Chairs","Sitemap","Brands","Sofas"],

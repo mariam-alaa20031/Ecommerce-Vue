@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import productCard from '@components/productCard.vue'
+import productCard from '../components/productCard.vue'
 import productsHeader from '../components/productsHeader.vue'
 
 
