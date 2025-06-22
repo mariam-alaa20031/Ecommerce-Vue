@@ -9,12 +9,13 @@
   </div>
 </template>
 
-<script>
-import productCard from '../components/productCard.vue'
-import productsHeader from '../components/productsHeader.vue'
+<script lang="ts">
+import productCard from '../components/productCard.vue';
+import productsHeader from '../components/productsHeader.vue';
+import {defineComponent} from 'vue';
+import {Product} from '../../public/Product';
 
-
-export default {
+export default defineComponent({
   name: 'productsPage',
   components: {
     productCard,
@@ -27,7 +28,7 @@ export default {
     }
   },
   computed:{
-      products() {
+      products():Product[] {
         return this.$store.state.products;
       }
   
@@ -35,8 +36,7 @@ export default {
   created(){
     this.$store.dispatch('loadProducts');
   }
-
-}
+})
 </script>
 
 <style scoped lang="scss">

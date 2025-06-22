@@ -9,7 +9,8 @@
     <div class="view__card only__card">
       <img class="view__card--img only__card--img" :src="product.image" />
       <productPrice :price="product.price" :clickable="false"></productPrice>
-      <button class="only__card--add">Add to cart</button>
+      <button class="only__card--add"
+      @click="addToCart(product)">Add to cart</button>
     </div>
   </div>
 </template>
@@ -17,6 +18,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import productPrice from "./productPrice.vue";
+import {Product} from '../../public/Product';
 
 export default defineComponent({
   name: "productCard",
@@ -25,7 +27,7 @@ export default defineComponent({
   },
   props: {
     product: {
-      type: Object,
+      type: Object as ()=> Product,
       required: true,
     },
     clickable: {
@@ -33,6 +35,13 @@ export default defineComponent({
       required: true,
     },
   },
+
+  methods: {
+    addToCart(product: Product) {
+      this.$store.dispatch("addToCart", product);
+    }
+  },
+
 });
 </script>
 

@@ -26,9 +26,9 @@ export default {
   },
   computed:{
     
-  product() {
-    const productId = this.$route.params.id;
-    return this.$store.state.products.find(p => p.id == productId);
+     product() {
+        const productId = this.$route.params.id;
+        return this.$store.state.products.find(p => p.id == productId);
   
 
   }

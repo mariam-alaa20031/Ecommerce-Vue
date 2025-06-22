@@ -1,15 +1,20 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import {Product} from '../../public/Product';
 
 export default createStore({
   state: {
-    products:[]
+    products:[] as Product[],
+    cart:[] as Product[]
   },
   getters: {
   },
   mutations: {
-    setProducts(state,products){
+    setProducts(state,products: Product[]){
       state.products=products;
+    },
+    addToCart(state,product:Product){
+      state.cart.push(product);
     }
 
   },
@@ -23,8 +28,10 @@ export default createStore({
       catch(error){
         console.error("Error fetching products: ",error);
       }
-    }
-  },
+    },
+    addToCart({commit},product:Product){
+          commit('addToCart', product);
+    }},
   modules: {
   }
 })

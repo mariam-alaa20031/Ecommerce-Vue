@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import {Product} from '../../public/Product';
 
 export default defineComponent({
   name: 'cartDrawer',
@@ -25,7 +26,12 @@ export default defineComponent({
   methods:{
    closeDrawer() {
     this.$emit('close');
-  }}
+  }},
+  computed:{
+     cart():Product[]{
+        return this.$store.state.cart
+     }
+  }
 });
 </script>
 
