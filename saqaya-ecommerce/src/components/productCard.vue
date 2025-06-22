@@ -19,6 +19,7 @@
 import { defineComponent } from "vue";
 import productPrice from "./productPrice.vue";
 import {Product} from '../../public/Product';
+import { PropType } from "vue";
 
 export default defineComponent({
   name: "productCard",
@@ -27,7 +28,7 @@ export default defineComponent({
   },
   props: {
     product: {
-      type: Object as ()=> Product,
+      type: Object as PropType<Product>,
       required: true,
     },
     clickable: {
