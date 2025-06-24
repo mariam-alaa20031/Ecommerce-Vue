@@ -15,6 +15,9 @@ export default createStore({
       });
       return counts;
     },
+    fetchProductFromCart(state, id:string){
+        return state.cart.find((prod:Product)=>id==prod.id+'')
+    }
   },
   mutations: {
     setProducts(state, products: Product[]) {

@@ -2,13 +2,13 @@
   <div class="details">
     <div class="details__description">
       <div class="details__description--title titillium-web-semibold">
-        {{ product.title }}
+        {{ product.title  }}
       </div>
       <div class="details__description--category titillium-web-regular">
-        {{ product.category + "  x"}}
+        {{ quantity + "  x" + '&nbsp;&nbsp;&nbsp;&nbsp;'+product.category}}
       </div>
     </div>
-    <div class="details__price titillium-web-semibold">{{ product.price }}</div>
+    <div class="details__price titillium-web-semibold">{{ product.price * quantity }}</div>
   </div>
 </template>
 
@@ -21,6 +21,7 @@ export default defineComponent({
   name: "cartItem",
   props: {
     product: { type: Object as PropType<Product>, required: true },
+    quantity: {type: Number, required:true}  
   },
 });
 </script>
@@ -38,10 +39,10 @@ export default defineComponent({
     justify-content: center;
     align-items: flex-start;
     margin-left:10px;
- 
+    width:85%;
     &--title {
       font-size: 14px;
-      width:200px;
+      
       text-align: left;
     }
  

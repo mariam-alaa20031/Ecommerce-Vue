@@ -1,5 +1,5 @@
 <template>
-  <button class="add" @click="addToCart(product)">
+  <button class="add" @click="add(product)">
     Add to cart
   </button>
 </template>
@@ -13,11 +13,8 @@ export default defineComponent({
   name: "buttonAddProduct",
   props: {
     product: { type: Object as PropType<Product>, required: true },
-  },
-  methods: {
-    addToCart(product: Product) {
-      this.$store.dispatch("addToCart", product);
-    },
+    add:{type:Function, required:true}  
+  
   },
 });
 </script>
