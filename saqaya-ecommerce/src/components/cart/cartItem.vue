@@ -22,18 +22,22 @@ export default defineComponent({
         cartItemDescription
     },
     props:{
-        cart: {type: Array as PropType<Product[]>,
+        cart: {type: Object as PropType<Record<number,number>>,
                required:true
         },
+    },
+    methods:{
+          
     },
     computed:{
     sum():number{
              let sum=0
-             this.cart.forEach((product:Product)=>{
+             this.$store.state.cart.forEach((product:Product)=>{
                 sum+=product.price
              })
              return sum
-    }}
+    },
+    }
     
 })
 </script>

@@ -31,11 +31,9 @@ export default defineComponent({
   },
   methods:{
    closeDrawer() {
-    this.$emit('close');
-  }},
-  computed:{
-     cart():Product[]{
-        return this.$store.state.cart
+    this.$emit('close');},
+   cart():Record<number,number>{
+        return this.$store.getters.cartProductCounts
      },
      
   }

@@ -9,7 +9,7 @@
 
 <script>
 import productCard from '../components/product/productCard.vue'
-import productDescription from '../components/productDescription.vue';
+import productDescription from '../components/product/productDescription.vue';
 
 export default {
   name: 'productPage',

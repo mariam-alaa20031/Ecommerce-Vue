@@ -5,7 +5,7 @@
         {{ product.title }}
       </div>
       <div class="details__description--category titillium-web-regular">
-        {{ product.category }}
+        {{ product.category + "  x"}}
       </div>
     </div>
     <div class="details__price titillium-web-semibold">{{ product.price }}</div>

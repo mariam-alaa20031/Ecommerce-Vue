@@ -5,7 +5,7 @@
 
 <script lang="ts">
 import { defineComponent} from 'vue';
-import productsHeader from '../components/productsHeader.vue';
+import productsHeader from '../components/product/productsHeader.vue';
 
 export default defineComponent({
   name: 'aboutUs',

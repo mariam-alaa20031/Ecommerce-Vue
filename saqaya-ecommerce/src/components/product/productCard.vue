@@ -9,22 +9,26 @@
     <div class="view__card only__card">
       <img class="view__card--img only__card--img" :src="product.image" />
       <productPrice :price="product.price" :clickable="false"></productPrice>
-      <button class="only__card--add"
-      @click="addToCart(product)">Add to cart</button>
+      <buttonChangeQuantity v-if="isProductInCart(product)" :add="addToCart" :product="product"></buttonChangeQuantity>
+      <buttonAddProduct :product="product" v-else></buttonAddProduct>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import productPrice from "../productPrice.vue";
-import {Product} from '../../../public/Product';
+import productPrice from "./productPrice.vue";
+import buttonAddProduct from "./buttonAddProduct.vue";
+import { Product } from "../../../public/Product";
 import { PropType } from "vue";
+import ButtonChangeQuantity from "./buttonChangeQuantity.vue";
 
 export default defineComponent({
   name: "productCard",
   components: {
     productPrice,
+    buttonAddProduct,
+    ButtonChangeQuantity
   },
   props: {
     product: {
@@ -35,14 +39,18 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
+  
   },
 
   methods: {
     addToCart(product: Product) {
       this.$store.dispatch("addToCart", product);
+    },
+    isProductInCart(product: Product){
+        return this.$store.state.cart.some((prod) => prod.id === product.id);
+
     }
   },
-
 });
 </script>
 
@@ -60,7 +68,6 @@ export default defineComponent({
   text-decoration: none;
   :deep(*) {
     text-decoration: none;
-    color: inherit;
   }
   &:hover {
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
@@ -74,8 +81,6 @@ export default defineComponent({
     height: 100%;
     justify-content: space-between;
     align-items: center;
-    
-  
 
     &--img {
       width: 60px;
@@ -84,34 +89,23 @@ export default defineComponent({
 }
 
 .only {
-  margin-left:4%;
+  margin-left: 4%;
   cursor: default;
   &:hover {
     box-shadow: none;
     transform: none;
   }
-  &__card{
-
-    &--add {
-      background-color: #2e4d73;
-      border: solid 1px #91a6c0;
-      color:white;
-      width:70%;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      &:hover {
-        background-color: #e0e0e0;
-        color: #2e4d73;
-      }
+  &__card {
+    color:white;
+  
     }
 
-    &--img{
+    &--img {
       border-radius: 0px;
-      width:100px;
-      height:100px;
-      margin-bottom:5px;
-    }}
-      
+      width: 100px;
+      height: 100px;
+      margin-bottom: 5px;
+    }
   }
+
 </style>

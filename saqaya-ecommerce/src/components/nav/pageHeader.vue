@@ -11,7 +11,7 @@
      </div>
     </button>
     <div class="header__left" v-if="!cart_selected">
-    <img src="../assets/logo.png" class="header__logo"/>
+    <img src="../../assets/logo.png" class="header__logo"/>
     <div class="header__links">
       <a @click="clickLink('home')" 
       :class="clickedHome?'links__active':'links__default'" href="#/">Home</a>
@@ -24,7 +24,7 @@
     <div class="header__right" v-if="!cart_selected">
     <a >Sign In</a>
     <button @click="cart_selected=true" class="header__button">
-    <img class="header__cart" src="../assets/shopping-cart.png"/>
+    <img class="header__cart" src="../../assets/shopping-cart.png"/>
     </button>
   </div>
 </div>

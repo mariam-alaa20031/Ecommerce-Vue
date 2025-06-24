@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import productCard from '../components/product/productCard.vue';
-import productsHeader from '../components/productsHeader.vue';
+import productsHeader from '../components/product/productsHeader.vue';
 import {defineComponent} from 'vue';
 import {Product} from '../../public/Product';
 

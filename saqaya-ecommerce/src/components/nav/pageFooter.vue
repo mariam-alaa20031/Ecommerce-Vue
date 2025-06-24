@@ -61,7 +61,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .footer{
-    background-color: #acaef3;
+    background-color: #d3d3d7;
     width:100vw;
     height:max-content;
     bottom:0;

@@ -26,6 +26,9 @@ export default defineComponent({
 <style scoped lang="scss">
 .header{
     background-color:  #ffffff;
+    h1{
+        margin-bottom: 20px;
+    }
 }
 .description{
     display: flex;
