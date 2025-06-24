@@ -18,8 +18,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {Product} from '../../public/Product';
-import cartItem from './cartItem.vue';
+import {Product} from '../../../public/Product';
+import cartItem from './cartItem.vue'
 
 export default defineComponent({
   name: 'cartDrawer',

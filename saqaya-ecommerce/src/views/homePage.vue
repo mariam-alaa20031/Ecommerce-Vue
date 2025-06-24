@@ -7,8 +7,8 @@
 <script lang="ts">
 
 import { defineComponent} from 'vue';
-import homeHeader from  '../components/homeHeader.vue';
-import homeReviews from '../components/homeReviews.vue';
+import homeHeader from  '../components/home/homeHeader.vue';
+import homeReviews from '../components/home/homeReviews.vue';
 
 export default defineComponent({
   name: 'homePage',

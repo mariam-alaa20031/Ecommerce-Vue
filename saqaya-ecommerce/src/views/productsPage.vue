@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import productCard from '../components/productCard.vue';
+import productCard from '../components/product/productCard.vue';
 import productsHeader from '../components/productsHeader.vue';
 import {defineComponent} from 'vue';
 import {Product} from '../../public/Product';

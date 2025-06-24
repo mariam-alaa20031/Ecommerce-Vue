@@ -17,8 +17,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import productPrice from "./productPrice.vue";
-import {Product} from '../../public/Product';
+import productPrice from "../productPrice.vue";
+import {Product} from '../../../public/Product';
 import { PropType } from "vue";
 
 export default defineComponent({

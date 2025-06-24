@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import { Product} from '../../public/Product';
+import { Product} from '../../../public/Product';
 import { PropType } from 'vue';
 import cartItemDescription from './cartItemDescription.vue';
 
