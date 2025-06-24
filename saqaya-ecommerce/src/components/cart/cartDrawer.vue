@@ -11,7 +11,7 @@
       <div class="drawer__line"></div>
       <p
       v-if="cart.length==0">Your cart is empty, take a look at our products.</p>
-      <cartItem v-else :cart="cart"></cartItem>
+      <cartItem v-else ></cartItem>
     </div>
   </div>
 </template>
@@ -31,12 +31,16 @@ export default defineComponent({
   },
   methods:{
    closeDrawer() {
-    this.$emit('close');},
-   cart():Record<number,number>{
-        return this.$store.getters.cartProductCounts
-     },
+    this.$emit('close');}
      
-  }
+  },
+  computed:{
+
+    cart():Product[]{
+       
+       return this.$store.state.cart
+    
+  }}
 });
 </script>
 
@@ -59,7 +63,7 @@ h2{
   position: fixed;
   top: 0;
   right: -400px;
-  width: 30%;
+  width: 35%;
   height: 100%;
   background: linear-gradient(to bottom, #1d2c3b, #0a1a24);
   color: white;

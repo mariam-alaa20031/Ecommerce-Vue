@@ -10,7 +10,7 @@
       <img class="view__card--img only__card--img" :src="product.image" />
       <productPrice :price="product.price" :clickable="false"></productPrice>
       <buttonChangeQuantity v-if="isProductInCart(product)" :add="addToCart" :product="product"></buttonChangeQuantity>
-      <buttonAddProduct :product="product" v-else></buttonAddProduct>
+      <buttonAddProduct :product="product" :add="addToCart" v-else></buttonAddProduct>
     </div>
   </div>
 </template>
