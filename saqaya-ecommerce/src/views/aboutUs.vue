@@ -1,13 +1,17 @@
 <template>
-<div></div>
+<productsHeader></productsHeader>
 </template>
 
 
 <script lang="ts">
 import { defineComponent} from 'vue';
+import productsHeader from '../components/productsHeader.vue';
 
 export default defineComponent({
-  name: 'aboutUs'
+  name: 'aboutUs',
+  components:{
+    productsHeader
+  }
 })  
 
 

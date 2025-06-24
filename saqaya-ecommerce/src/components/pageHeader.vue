@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { defineComponent} from 'vue';
-import cartDrawer from './cartDrawer.vue';
+import cartDrawer from "./cartDrawer.vue";
 
 export default defineComponent({
 name: 'pageHeader',

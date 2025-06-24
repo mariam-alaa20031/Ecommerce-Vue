@@ -1,13 +1,21 @@
 <template>
-<div></div>
+<homeHeader></homeHeader>
+<homeReviews></homeReviews>
 </template>
 
 
 <script lang="ts">
+
 import { defineComponent} from 'vue';
+import homeHeader from  '../components/homeHeader.vue';
+import homeReviews from '../components/homeReviews.vue';
 
 export default defineComponent({
-  name: 'homePage'
+  name: 'homePage',
+  components:{
+    homeHeader,
+    homeReviews
+  }
 })  
 
 
