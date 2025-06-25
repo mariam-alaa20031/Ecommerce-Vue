@@ -8,6 +8,19 @@ export default createStore({
     cart: [] as Product[],
   },
   getters: {
+    sortProductsPriceAsc(state){
+      return state.products.sort((a,b)=>a.price-b.price)
+    },
+
+    sortProductsPriceDesc(state){
+      return state.products.sort((a,b)=>b.price-a.price)
+    },
+    sortProductsRatingAsc(state){
+        return state.products.sort((a,b)=>b.rating.rate-a.rating.rate)
+    },
+    sortProductsRatingDesc(state){
+        return state.products.sort((a,b)=>a.rating.rate-b.rating.rate)
+    },
     cartProductCounts(state) {
       const counts: Record<number, number> = {};
       state.cart.forEach((product: Product) => {
@@ -15,6 +28,7 @@ export default createStore({
       });
       return counts;
     },
+
   },
   mutations: {
     setProducts(state, products: Product[]) {
@@ -35,6 +49,7 @@ export default createStore({
     loadProducts({ commit }) {
       try {
         axios.get("https://fakestoreapi.com/products").then((response) => {
+          console.log(response.data)
           commit("setProducts", response.data);
         });
       } catch (error) {
