@@ -6,11 +6,15 @@
     <productDescription :product="product"></productDescription>
     </div> </div>
 </template>
-
-<script>
+ 
+<script lang="ts">
+import {Product} from '../../public/Product'
 import productCard from '../components/product/productCard.vue'
 import productDescription from '../components/product/productDescription.vue';
+import { PropType } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 
 export default {
   name: 'productPage',
@@ -19,6 +23,9 @@ export default {
     productDescription,
   },
   props: {
+    product:{
+      type:Array as PropType<Product[]>
+    },
     clickable: {
       type: Boolean,
       required: true
@@ -27,9 +34,9 @@ export default {
   },
   computed:{
     
-     product() {
-        const productId = this.$route.params.id;
-        return this.$store.state.products.find(p => p.id == productId);
+     product():Product| undefined{
+        const productId = route.params.id;
+        return this.$store.state.products.find(p => p.id+'' == productId);
   
 
   }
