@@ -23,9 +23,6 @@ export default {
     productDescription,
   },
   props: {
-    product:{
-      type:Array as PropType<Product[]>
-    },
     clickable: {
       type: Boolean,
       required: true
