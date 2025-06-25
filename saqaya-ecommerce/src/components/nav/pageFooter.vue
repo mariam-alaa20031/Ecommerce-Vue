@@ -136,20 +136,20 @@ export default defineComponent({
 }
 }
 .fa-twitter{
-    color:#b7d5f1;
+    color:#172c3f;
     font-size: 25px;
 }
 .bi-pinterest{
-    color:#b7d5f1;
+     color:#172c3f;
   
 }
 .fa-facebook-square{
-    color:#b7d5f1;
+     color:#172c3f;
     font-size: 25px;
 }
 
 .fa-instagram{
-    color:#b7d5f1;
+    color:#172c3f;
     font-size: 25px;
 }
 @media screen and (max-width: 900px) {
