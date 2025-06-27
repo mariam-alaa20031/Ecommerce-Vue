@@ -34,7 +34,7 @@ export default defineComponent({
     const productId = to.params.id;
     const exists = vm.$store.state.products.some((p: Product) => p.id + '' === productId);
     if (!exists) {
-      next({ name: 'NotFound' });
+      next({ name: 'notFound' });
     } else {
       next();
     }
