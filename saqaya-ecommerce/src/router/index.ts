@@ -4,6 +4,7 @@ import aboutUs from '../views/aboutUs.vue'
 import contactUs from '../views/contactUs.vue'
 import productsPage from '../views/productsPage.vue'
 import productPage from '../views/productPage.vue'
+import notFound from '../components/error/notFound.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     component: aboutUs
   },
     {
-    path: '/about',
+    path: '/contact',
     name: 'contact',
     component: contactUs
   },
@@ -31,7 +32,10 @@ const routes: Array<RouteRecordRaw> = [
     path:'/product/:id',
     name: 'product',
     component: productPage
-  }
+  },
+   { path: '/:pathMatch(.*)*', 
+     name: 'notFound', 
+     component: notFound },
 ]
 
 const router = createRouter({

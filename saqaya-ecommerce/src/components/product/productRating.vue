@@ -35,9 +35,7 @@ export default defineComponent({
     props:{
            rating:{type:Number, required:true }
     },
-    computed:{
-       
-    }
+ 
    
 })
 

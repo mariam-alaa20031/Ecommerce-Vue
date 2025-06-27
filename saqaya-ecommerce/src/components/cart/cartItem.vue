@@ -36,6 +36,7 @@ export default defineComponent({
           id: -1,
           title: "Unknown Product",
           image: "",
+          rating:{rate:4,count:10},
           price: 0,
           description: "This product is not available.",
           category: "",

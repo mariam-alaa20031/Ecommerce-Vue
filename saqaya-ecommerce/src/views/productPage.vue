@@ -11,7 +11,6 @@
 import {Product} from '../../public/Product'
 import productCard from '../components/product/productCard.vue'
 import productDescription from '../components/product/productDescription.vue';
-import { PropType } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -31,9 +30,17 @@ export default {
   },
   computed:{
     
-     product():Product| undefined{
+     product():Product {
         const productId = route.params.id;
-        return this.$store.state.products.find(p => p.id+'' == productId);
+        return this.$store.state.products.find(p => p.id+'' == productId) || {
+          id: -1,
+          title: "Unknown Product",
+          image: "",
+          rating:{rate:0,count:0},
+          price: 0,
+          description: "This product is not available.",
+          category: "",
+        }
   
 
   }
