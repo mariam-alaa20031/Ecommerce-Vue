@@ -12,6 +12,7 @@ import {defineComponent} from 'vue';
 import {Product} from '../../public/Product'
 import productCard from '../components/product/productCard.vue'
 import productDescription from '../components/product/productDescription.vue';
+import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 
 export default defineComponent({
   name: 'productPage',
@@ -26,6 +27,20 @@ export default defineComponent({
     },
 
   },
+  beforeRouteEnter( to: RouteLocationNormalized,
+    from: RouteLocationNormalized,
+    next: NavigationGuardNext) {
+  next((vm: any) => {
+    const productId = to.params.id;
+    const exists = vm.$store.state.products.some((p: Product) => p.id + '' === productId);
+    if (!exists) {
+      next({ name: 'NotFound' });
+    } else {
+      next();
+    }
+  });
+}
+,
   computed:{
     
      product():Product {
@@ -43,9 +58,9 @@ export default defineComponent({
 
   }
 }
-  ,
-  created() {
-    this.$store.dispatch('loadProducts')
+  , 
+  async created() {
+    await this.$store.dispatch('loadProducts')
      
   }
 })
