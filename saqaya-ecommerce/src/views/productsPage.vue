@@ -60,9 +60,7 @@ export default defineComponent({
       }
   
   },
-  created(){
-    this.$store.dispatch('loadProducts');
-  }
+
 })
 </script>
 

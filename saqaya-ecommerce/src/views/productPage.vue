@@ -1,5 +1,5 @@
 <template>
-  <div class="stretch" v-if="!loading">
+  <div class="stretch" >
     <div class="product">
       <productCard :product="product" :clickable="false" />
       <productDescription :product="product" />
@@ -9,7 +9,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
 import { Product } from '../../public/interfaces/Product';
 import productCard from '../components/product/productCard.vue';
 import productDescription from '../components/product/productDescription.vue';
@@ -26,16 +25,12 @@ export default defineComponent({
       required: true
     }
   },
-  data() {
-    return {
-      loading: true as boolean
-    };
-  },
+ 
   computed: {
     product(): Product {
       const productId = this.$route.params.id;
       return (
-        this.$store.state.products.find((p: Product) => p.id + '' === productId) || {
+        this.$store.getters.getProductById(productId) || {
           id: -1,
           title: 'Unknown Product',
           image: '',
@@ -47,29 +42,7 @@ export default defineComponent({
       );
     }
   },
-  beforeRouteEnter(
-    to: RouteLocationNormalized,
-    from: RouteLocationNormalized,
-    next: NavigationGuardNext
-  ) {
-    next(async (vm: any) => {
-      if (!vm.$store.state.products.length) {
-        await vm.$store.dispatch('loadProducts');
-      }
-
-      const productId = to.params.id;
-      const exists = vm.$store.state.products.some(
-        (p: Product) => p.id + '' === productId
-      );
-
-      if (!exists) {
-        next({ name: 'notFound' });
-      } else {
-        vm.loading = false; 
-      }
-    });
-  }
-});
+})
 </script>
 
 <style scoped lang="scss">

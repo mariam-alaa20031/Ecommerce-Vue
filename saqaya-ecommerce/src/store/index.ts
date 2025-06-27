@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import axios from "axios";
 import { Product } from "../../public/interfaces/Product";
+import route from "../router"
 
 export default createStore({
   state: {
@@ -8,6 +9,10 @@ export default createStore({
     cart: [] as Product[],
   },
   getters: {
+     getProductById: (state) => (id: string | number) => {
+    return state.products.find((prod: Product) =>""+prod.id === ""+id);
+   },
+
     sortProductsPriceAsc(state){
       return state.products.sort((a,b)=>a.price-b.price)
     },
