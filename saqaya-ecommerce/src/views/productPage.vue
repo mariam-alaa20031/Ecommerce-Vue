@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
-import { Product } from '../../public/Product';
+import { Product } from '../../public/interfaces/Product';
 import productCard from '../components/product/productCard.vue';
 import productDescription from '../components/product/productDescription.vue';
 

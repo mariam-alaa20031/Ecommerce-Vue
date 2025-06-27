@@ -19,7 +19,7 @@
 import { defineComponent } from "vue";
 import productPrice from "./productPrice.vue";
 import buttonAddProduct from "./buttonAddProduct.vue";
-import { Product } from "../../../public/Product";
+import { Product } from "../../../public/interfaces/Product";
 import { PropType } from "vue";
 import ButtonChangeQuantity from "./buttonChangeQuantity.vue";
 

@@ -7,11 +7,14 @@
     <div class="cart__total--display">Total:</div>
     <div class="cart__total--price">{{ sum.toFixed(2) + " LE" }}</div>
   </div>
+  <router-link to="/checkout" class="checkout titillium-web-regular">
+    <button class="checkout__button"  >checkout</button>
+  </router-link>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Product } from "../../../public/Product";
+import { Product } from "../../../public/interfaces/Product"
 import cartItemDescription from "./cartItemDescription.vue";
 
 export default defineComponent({
@@ -80,4 +83,30 @@ export default defineComponent({
     }
   }
 }
+
+.checkout {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px; 
+  box-sizing: border-box; 
+  text-decoration: none;
+  flex-wrap: wrap;
+  &__button {
+    background-color: #e0e0e0;
+    color: #2e4d73;
+    border: solid 1px #2e4d73;
+    width: max-content;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ffffff;
+      border: solid 1px black;
+      color: black;
+    }
+  }
+}
+
 </style>

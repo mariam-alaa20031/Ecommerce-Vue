@@ -51,16 +51,18 @@ export default defineComponent({
 .contact__button {
   align-self: flex-start;
   padding: 10px 25px;
+  color:white;
   font-size: 1rem;
-  border: none;
-  border-radius: 6px;
-  background-color: #0056b3;
-  color: #fff;
+  background-color: #2e4d73;
+  border: solid 1px #91a6c0;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  &:hover {
+       background-color: #e0e0e0;
+       color:inherit;
+       color: #2e4d73;
+      }
 }
 
-.contact__button:hover {
-  background-color: #003f8a;
-}
+
 </style>

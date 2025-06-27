@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {Product} from '../../../public/Product';
+import {Product} from '../../../public/interfaces/Product';
 import cartItem from './cartItem.vue'
 
 export default defineComponent({

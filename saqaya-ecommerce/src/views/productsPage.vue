@@ -16,7 +16,7 @@
 import productCard from '../components/product/productCard.vue';
 import productsHeader from '../components/product/productsHeader.vue';
 import {defineComponent} from 'vue';
-import {Product} from '../../public/Product';
+import {Product} from '../../public/interfaces/Product';
 import sortDropdown from '../components/product/sortDropdown.vue';
 
 export default defineComponent({
@@ -79,7 +79,7 @@ export default defineComponent({
 .products{
   display:flex;
   flex-direction: row;
-  gap:50;
+  gap:50px;
   padding:20px;
   flex-wrap: wrap;
   justify-content: center;

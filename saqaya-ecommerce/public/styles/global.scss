@@ -3,6 +3,7 @@ html, body {
   padding: 0;
   height: 100%;
   width:100%;
+   overflow-x: hidden;
 }
 
 #app {
@@ -10,3 +11,4 @@ html, body {
   flex-direction: column;
   height: 100%; 
 }
+

@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import axios from "axios";
-import { Product } from "../../public/Product";
+import { Product } from "../../public/interfaces/Product";
 
 export default createStore({
   state: {
