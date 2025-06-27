@@ -12,8 +12,6 @@ import {defineComponent} from 'vue';
 import {Product} from '../../public/Product'
 import productCard from '../components/product/productCard.vue'
 import productDescription from '../components/product/productDescription.vue';
-import { useRoute } from 'vue-router';
-
 
 export default defineComponent({
   name: 'productPage',
@@ -31,9 +29,8 @@ export default defineComponent({
   computed:{
     
      product():Product {
-        const route = useRoute();
-        const productId = route.params.id;
-        return this.$store.state.products.find((p:Product) => p.id+'' == productId) || {
+        const productId = this.$route.params.id;
+        return this.$store.state.products.find(p => p.id+'' == productId) || {
           id: -1,
           title: "Unknown Product",
           image: "",
