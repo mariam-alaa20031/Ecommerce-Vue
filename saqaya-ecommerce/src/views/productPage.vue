@@ -8,14 +8,14 @@
 </template>
  
 <script lang="ts">
+import {defineComponent} from 'vue';
 import {Product} from '../../public/Product'
 import productCard from '../components/product/productCard.vue'
 import productDescription from '../components/product/productDescription.vue';
 import { useRoute } from 'vue-router';
 
-const route = useRoute();
 
-export default {
+export default defineComponent({
   name: 'productPage',
   components: {
     productCard,
@@ -31,8 +31,9 @@ export default {
   computed:{
     
      product():Product {
+        const route = useRoute();
         const productId = route.params.id;
-        return this.$store.state.products.find(p => p.id+'' == productId) || {
+        return this.$store.state.products.find((p:Product) => p.id+'' == productId) || {
           id: -1,
           title: "Unknown Product",
           image: "",
@@ -50,7 +51,8 @@ export default {
     this.$store.dispatch('loadProducts')
      
   }
-}
+})
+
 </script>
 
 <style scoped lang="scss">
