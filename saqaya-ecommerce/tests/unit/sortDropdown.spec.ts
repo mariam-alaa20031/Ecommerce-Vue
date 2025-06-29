@@ -1,5 +1,5 @@
 import { shallowMount, VueWrapper } from '@vue/test-utils'
-import sortDropdown from '@/components/sortDropdown.vue'
+import sortDropdown from '../../src/components/product/sortDropdown.vue';
 
 describe('Dropdown sorting UI component', () => {
   let wrapper:VueWrapper<any>;
@@ -19,6 +19,15 @@ describe('Dropdown sorting UI component', () => {
     expect(options[1].text()).toBe('most rated')
     expect(options[2].text()).toBe('lowest price')
     expect(options[3].text()).toBe('highest price')
+  })
+
+  it('emits the selected sort option',async ()=>{
+       wrapper.vm.$emit('sortProducts','price-ascending')
+       await wrapper.vm.$nextTick()
+       expect(wrapper.emitted().sortProducts).toBeTruthy()
+       // console.log(wrapper.emitted().sortProducts) this returned [['price-ascending']]
+       expect(wrapper.emitted().sortProducts[0]).toEqual(['price-ascending'])
+
   })
 })
 

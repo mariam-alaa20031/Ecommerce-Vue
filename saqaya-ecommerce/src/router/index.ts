@@ -6,7 +6,6 @@ import productsPage from '../views/productsPage.vue'
 import productPage from '../views/productPage.vue'
 import notFound from '../components/error/notFound.vue'
 import store from '../store';
-import { Product } from 'public/interfaces/Product'
 
 const routes: Array<RouteRecordRaw> = [
   {
