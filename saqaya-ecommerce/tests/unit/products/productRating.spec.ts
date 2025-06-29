@@ -3,11 +3,14 @@ import productRating from '../../../src/components/product/productRating.vue'
 
 describe('Dropdown sorting UI component', () => {
   let wrapper:VueWrapper<any>;
+  let rating:number=1;
   beforeEach(()=>{
-       wrapper= shallowMount(productRating)
+       wrapper= shallowMount(productRating, {props:{rating:rating}})
+  })
+  afterEach(()=>{
+        rating++
   })
   it('attaches correct classes for a rating of 1', async () => {
-       await wrapper.setProps({rating:1})
        const stars= wrapper.findAll("svg")
        expect(stars[0].classes()).toEqual(['star'])
        expect(stars[1].classes()).toEqual(['blank'])
