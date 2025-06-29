@@ -1,5 +1,5 @@
 import { shallowMount, VueWrapper } from '@vue/test-utils'
-import sortDropdown from '../../src/components/product/sortDropdown.vue';
+import sortDropdown from '../../../src/components/product/sortDropdown.vue';
 
 describe('Dropdown sorting UI component', () => {
   let wrapper:VueWrapper<any>;
