@@ -18,7 +18,7 @@ describe('Dropdown sorting UI component', () => {
   });
 
   it('attaches correct classes for a rating of 2', async () => {
-       await wrapper.setProps({rating:1})
+       await wrapper.setProps({rating:2})
        const stars= wrapper.findAll("svg")
        expect(stars[0].classes()).toEqual(['star'])
        expect(stars[1].classes()).toEqual(['star'])
@@ -29,7 +29,7 @@ describe('Dropdown sorting UI component', () => {
   });
 
     it('attaches correct classes for a rating of 3', async () => {
-       await wrapper.setProps({rating:1})
+       await wrapper.setProps({rating:3})
        const stars= wrapper.findAll("svg")
        expect(stars[0].classes()).toEqual(['star'])
        expect(stars[1].classes()).toEqual(['star'])
@@ -40,7 +40,7 @@ describe('Dropdown sorting UI component', () => {
   });
 
     it('attaches correct classes for a rating of 4', async () => {
-       await wrapper.setProps({rating:1})
+       await wrapper.setProps({rating:4})
        const stars= wrapper.findAll("svg")
        expect(stars[0].classes()).toEqual(['star'])
        expect(stars[1].classes()).toEqual(['star'])
