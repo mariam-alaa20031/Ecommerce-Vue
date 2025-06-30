@@ -1,0 +1,83 @@
+import { shallowMount, VueWrapper } from "@vue/test-utils";
+import pageHeader from "../../../src/components/nav/pageHeader.vue";
+
+describe("Page header component", () => {
+  let wrapper: VueWrapper<any>;
+
+  beforeAll(() => {
+    wrapper = shallowMount(pageHeader, {});
+  });
+
+  it("renders root header with class 'header'", () => {
+    const header = wrapper.find(".header");
+    expect(header.exists()).toBe(true);
+  });
+
+  it("renders menu button with class 'header__menu'", () => {
+    const menuBtn = wrapper.find(".header__menu");
+    expect(menuBtn.exists()).toBe(true);
+  });
+
+  it("renders three bars with class 'header__bar'", () => {
+    const bars = wrapper.findAll(".header__bar");
+    expect(bars.length).toBe(3);
+  });
+
+  it("displays correct class when cart_selected is true", async () => {
+    await wrapper.setData({ cart_selected: true });
+    const menu = wrapper.find(".header__menu");
+    expect(menu.classes()).toContain("header__menu-active");
+  });
+
+  it("renders left section and logo when cart is not selected", async () => {
+    await wrapper.setData({ cart_selected: false });
+    const left = wrapper.find(".header__left");
+    const logo = wrapper.find(".header__logo");
+    expect(left.exists()).toBe(true);
+    expect(logo.exists()).toBe(true);
+  });
+
+  it("renders right section and cart icon", () => {
+    const right = wrapper.find(".header__right");
+    const cartIcon = wrapper.find(".header__cart");
+    expect(right.exists()).toBe(true);
+    expect(cartIcon.exists()).toBe(true);
+  });
+
+  it("applies correct class to clicked link", async () => {
+    const links = wrapper.findAll("a");
+    expect(links.length).toBeGreaterThan(2);
+
+    await links[0].trigger("click");
+    expect(links[0].classes()).toContain("links__active");
+    expect(links[1].classes()).toContain("links__default");
+    expect(links[2].classes()).toContain("links__default");
+
+    await links[1].trigger("click");
+    expect(links[1].classes()).toContain("links__active");
+    expect(links[0].classes()).toContain("links__default");
+
+    await links[2].trigger("click");
+    expect(links[2].classes()).toContain("links__active");
+    expect(links[0].classes()).toContain("links__default");
+    expect(links[1].classes()).toContain("links__default");
+  });
+
+  it("displays cartDrawer when cart_selected is true", async () => {
+    await wrapper.setData({ cart_selected: true });
+    expect(wrapper.findComponent({ name: "cartDrawer" }).exists()).toBe(true);
+  });
+
+  it("hides header left and right when cart_selected is true", async () => {
+    await wrapper.setData({ cart_selected: true });
+    expect(wrapper.find(".header__left").exists()).toBe(false);
+    expect(wrapper.find(".header__right").exists()).toBe(false);
+  });
+
+  it("closes cartDrawer when 'close' is emitted", async () => {
+    await wrapper.setData({ cart_selected: true });
+    const drawer = wrapper.findComponent({ name: "cartDrawer" });
+    await drawer.vm.$emit("close");
+    expect(wrapper.vm.cart_selected).toBe(false);
+  });
+});
