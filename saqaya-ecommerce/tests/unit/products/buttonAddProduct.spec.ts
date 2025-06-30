@@ -1,13 +1,14 @@
-import { shallowMount, VueWrapper } from "@vue/test-utils";
+import { DOMWrapper, shallowMount, VueWrapper } from "@vue/test-utils";
 import buttonAddProduct from "../../../src/components/product/buttonAddProduct.vue";
 import { Product } from "../../../public/interfaces/Product";
 
 describe("buttonAddProduct.vue", () => {
   let wrapper: VueWrapper<any>;
   let product: Product;
+  let button:DOMWrapper<HTMLButtonElement>;
   const addMock = jest.fn();
 
-  beforeEach(() => {
+  beforeAll(() => {
     product = {
       id: 21,
       title: "wrap dress",
@@ -17,7 +18,6 @@ describe("buttonAddProduct.vue", () => {
       category: "Female Dresses",
       image: "dummy value"
     };
-
     wrapper = shallowMount(buttonAddProduct, {
       props: {
         product,
@@ -27,14 +27,17 @@ describe("buttonAddProduct.vue", () => {
   });
 
   it("renders the button with correct text", () => {
-    const button = wrapper.find("button");
+    button= wrapper.find("button");
     expect(button.exists()).toBe(true);
     expect(button.text()).toBe("Add to cart");
   });
 
   it("calls the add function when clicked", async () => {
-    const button = wrapper.find("button");
     await button.trigger("click");
     expect(addMock).toHaveBeenCalledWith(product);
   });
+
+  it("displays correct class on button",()=>{
+    expect(button.classes()[0]).toBe("add")
+  })
 });
