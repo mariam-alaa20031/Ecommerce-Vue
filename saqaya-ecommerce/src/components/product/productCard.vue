@@ -5,7 +5,7 @@
       <productPrice :price="product.price"></productPrice>
     </div>
   </router-link>
-  <div v-else :class="!clickable ? 'view only' : ''">
+  <div v-else class="view only">
     <div class="view__card only__card">
       <img class="view__card--img only__card--img" :src="product.image" />
       <productPrice :price="product.price" :clickable="false"></productPrice>
