@@ -2,7 +2,7 @@ import { DOMWrapper, shallowMount, VueWrapper } from "@vue/test-utils";
 import buttonAddProduct from "../../../src/components/product/buttonAddProduct.vue";
 import { Product } from "../../../public/interfaces/Product";
 
-describe("buttonAddProduct.vue", () => {
+describe("button adding product to cart component", () => {
   let wrapper: VueWrapper<any>;
   let product: Product;
   let button:DOMWrapper<HTMLButtonElement>;
