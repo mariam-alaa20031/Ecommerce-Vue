@@ -1,6 +1,6 @@
 <template>
 <div class="header titillium-web-regular">
-    <div class="description titillium-web-semibold">
+    <div class="header__description titillium-web-semibold">
         <h1>Products</h1>
         <p>Step into the world of Haelora — where fashion meets meaning. Whether it's a handcrafted ring or a flowy statement piece, every item in our collection is designed to reflect the light in you. Wear your story with confidence, grace, and a touch of everyday magic.</p>
     </div>
@@ -26,8 +26,7 @@ export default defineComponent({
 <style scoped lang="scss">
 .header{
     background-color:  #ffffff;
-}
-.description{
+&__description{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -47,7 +46,7 @@ export default defineComponent({
         font-size: 1.2em;
         color: #555;
         max-width:70%;
-    }
+    }}
 }
 
 </style>
