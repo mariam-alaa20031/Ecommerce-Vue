@@ -16,26 +16,25 @@
 import { defineComponent } from "vue";
 import { Product } from "../../../public/interfaces/Product"
 import cartItemDescription from "./cartItemDescription.vue";
+import {useStore} from 'vuex'
 
 export default defineComponent({
   name: "cartItem",
   components: {
     cartItemDescription,
   },
+  setup() {
+     const store=useStore()
 
-  methods: {
-
-    fetchQuantity(id:string):number{
-        return this.$store.getters.cartProductCounts[id]
-    },
+     function fetchQuantity(id:string):number{
+        return store.getters.cartProductCounts[id]
+    }
    
-    fetchProduct(id: string): Product {
-      const product = this.$store.state.products.find(
+    function fetchProduct(id: string): Product {
+      const product = store.state.products.find(
         (prod: Product) => prod.id.toString() === id
       );
-
-      return (
-        product || {
+      return product || {
           id: -1,
           title: "Unknown Product",
           image: "",
@@ -44,21 +43,17 @@ export default defineComponent({
           description: "This product is not available.",
           category: "",
         }
-      );
-    },
-  },
-  computed: {
-    sum(): number {
-      let sum = 0;
-      this.$store.state.cart.forEach((product: Product) => {
-        sum += product.price;
-      });
-      return sum;
-    },
-    cart(): Record<number, number> {
-      console.log(this.$store.getters.cartProductCounts)
-      return this.$store.getters.cartProductCounts;
-    },
+    }
+     let sum=0
+     let total: number = store.state.cart.forEach((product: Product) => {
+          sum += product.price;
+      })
+     let cart: Record<number, number> =store.getters.cartProductCounts;
+     return {
+     sum,
+     cart,
+     fetchProduct,
+     fetchQuantity}
   },
 });
 </script>
