@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,PropType } from "vue";
+import { defineComponent,PropType, toRef  } from "vue";
 import productPrice from "./productPrice.vue";
 import buttonAddProduct from "./buttonAddProduct.vue";
 import { Product } from "../../../public/interfaces/Product";
@@ -54,7 +54,8 @@ export default defineComponent({
 
     return {
       isProductInCart,
-      addToCart
+      addToCart,
+     
     }
    }
 });
