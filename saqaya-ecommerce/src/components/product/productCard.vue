@@ -16,12 +16,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent,PropType } from "vue";
 import productPrice from "./productPrice.vue";
 import buttonAddProduct from "./buttonAddProduct.vue";
 import { Product } from "../../../public/interfaces/Product";
-import { PropType } from "vue";
 import ButtonChangeQuantity from "./buttonChangeQuantity.vue";
+import {useStore} from 'vuex'
 
 export default defineComponent({
   name: "productCard",
@@ -41,16 +41,22 @@ export default defineComponent({
     },
   
   },
+   setup() {
+    const store= useStore()
 
-  methods: {
-    addToCart(product: Product) {
-      this.$store.dispatch("addToCart", product);
-    },
-    isProductInCart(product: Product){
-        return this.$store.state.cart.some((prod) => prod.id === product.id);
+        function addToCart(product: Product) {
+           store.dispatch("addToCart", product);
+    }
+      function isProductInCart(product: Product){
+        return store.state.cart.some((prod:Product) => prod.id === product.id);
 
     }
-  },
+
+    return {
+      isProductInCart,
+      addToCart
+    }
+   }
 });
 </script>
 

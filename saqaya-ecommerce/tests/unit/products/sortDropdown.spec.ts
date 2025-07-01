@@ -25,7 +25,6 @@ describe('Dropdown sorting UI component', () => {
        wrapper.vm.$emit('sortProducts','price-ascending')
        await wrapper.vm.$nextTick()
        expect(wrapper.emitted().sortProducts).toBeTruthy()
-       // console.log(wrapper.emitted().sortProducts) this returned [['price-ascending']]
        expect(wrapper.emitted().sortProducts[0]).toEqual(['price-ascending'])
 
   })

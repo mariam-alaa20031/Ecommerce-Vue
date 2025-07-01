@@ -15,13 +15,13 @@ describe("cart drawer component", () => {
       description: "Nice dress",
       category: "Clothes",
       rating: { rate: 4, count: 10 },
-      image: "image.jpg"
+      image: "image.jpg",
     };
 
     mockStore = {
       state: {
-        cart: [] 
-      }
+        cart: [],
+      },
     };
   });
 
@@ -30,13 +30,13 @@ describe("cart drawer component", () => {
 
     return shallowMount(cartDrawer, {
       props: {
-        visible
+        visible,
       },
       global: {
         mocks: {
-          $store: mockStore
-        }
-      }
+          $store: mockStore,
+        },
+      },
     });
   }
 
