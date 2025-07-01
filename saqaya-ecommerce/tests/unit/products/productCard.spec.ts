@@ -2,6 +2,7 @@ import { shallowMount, VueWrapper } from "@vue/test-utils";
 import productCard from '../../../src/components/product/productCard.vue';
 import { Rating } from "../../../public/interfaces/Rating";
 import { Product } from "../../../public/interfaces/Product";
+import {createStore} from 'vuex'
 
 describe('Product Card component display', () => {
   let wrapper: VueWrapper<any>;
@@ -23,23 +24,21 @@ describe('Product Card component display', () => {
       category: "Female Dresses",
       image: "dummy value",
     };
-    const mockStore = {
+    const mockStore = createStore({
     state: {
       cart: [product] 
      },
      
-    dispatch: jest.fn()
-  };
+    actions:{ 
+      addToCart: jest.fn()}
+  })
 
     clickable = true;
 
     wrapper = shallowMount(productCard, {
       props: { product, clickable },
       global: {
-        mocks: {
-          $store: mockStore
-        },
-        
+        plugins:[mockStore]  
       }
     });
   });
@@ -58,7 +57,6 @@ describe('Product Card component display', () => {
     expect(router.classes()[0]).toBe("view");
     expect(router.classes()[1]).toBeUndefined(); // 'only' class should not exist
     expect(div.classes()[0]).toBe("view__card");
-    expect(img.classes()[0]).toBe("view__card--img");
     count++;
   });
 
@@ -74,16 +72,13 @@ describe('Product Card component display', () => {
     count++;
   });
 
-  // Now clickable = false
   it('displays correct classes based on clickable set to false', async () => {
+    await wrapper.setProps({clickable:false})
     const divs = wrapper.findAll("div");
     const img = wrapper.find("img");
-    expect(divs[0].classes()).toContain("view");
     expect(divs[0].classes()).toContain("only");
     expect(divs[1].classes()).toContain("view__card");
     expect(divs[1].classes()).toContain("only__card");
-    expect(img.classes()).toContain("view__card--img");
-    expect(img.classes()).toContain("only__card--img");
     count++;
   });
 

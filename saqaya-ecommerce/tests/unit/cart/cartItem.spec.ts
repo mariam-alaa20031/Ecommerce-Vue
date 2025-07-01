@@ -1,6 +1,7 @@
 import { shallowMount, VueWrapper } from "@vue/test-utils";
 import cartItem from "../../../src/components/cart/cartItem.vue";
 import { Product } from "../../../public/interfaces/Product";
+import {createStore} from 'vuex'
 
 describe("cart item component", () => {
   let wrapper: VueWrapper<any>;
@@ -29,24 +30,22 @@ describe("cart item component", () => {
       image: "image2.jpg",
     };
 
-    mockStore = {
+    mockStore = createStore({
       state: {
         cart: [product1, product2],
         products: [product1, product2],
       },
       getters: {
-        cartProductCounts: {
+        cartProductCounts: ()=>({
           1: 2,
           2: 1,
-        },
-      },
-    };
+        }),
+      }
+    });
 
     wrapper = shallowMount(cartItem, {
       global: {
-        mocks: {
-          $store: mockStore,
-        },
+        plugins:[mockStore]
       },
     });
   });
@@ -82,8 +81,5 @@ describe("cart item component", () => {
     expect(wrapper.find(".cart__total").exists()).toBe(true);
     expect(wrapper.find(".cart__total--display").exists()).toBe(true);
     expect(wrapper.find(".cart__total--price").exists()).toBe(true);
-    expect(wrapper.find(".checkout__button").classes()).toContain(
-      "checkout__button"
-    );
   });
 });

@@ -1,6 +1,7 @@
 import { shallowMount, VueWrapper } from "@vue/test-utils";
 import cartDrawer from "../../../src/components/cart/cartDrawer.vue";
 import { Product } from "../../../public/interfaces/Product";
+import {createStore} from 'vuex'
 
 describe("cart drawer component", () => {
   let wrapper: VueWrapper<any>;
@@ -18,11 +19,11 @@ describe("cart drawer component", () => {
       image: "image.jpg",
     };
 
-    mockStore = {
-      state: {
-        cart: [],
-      },
-    };
+    mockStore = createStore({
+      state:{
+        cart:[]
+      }
+    })
   });
 
   function mountDrawer(visible = true, cart: Product[] = []) {
@@ -32,10 +33,9 @@ describe("cart drawer component", () => {
       props: {
         visible,
       },
-      global: {
-        mocks: {
-          $store: mockStore,
-        },
+     global: {
+                plugins: [mockStore],
+            
       },
     });
   }
