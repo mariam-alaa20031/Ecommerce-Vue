@@ -12,6 +12,9 @@ import { defineComponent } from 'vue';
 import { Product } from '../../public/interfaces/Product';
 import productCard from '../components/product/productCard.vue';
 import productDescription from '../components/product/productDescription.vue';
+import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+
 
 export default defineComponent({
   name: 'productPage',
@@ -25,12 +28,11 @@ export default defineComponent({
       required: true
     }
   },
- 
-  computed: {
-    product(): Product {
-      const productId = this.$route.params.id;
-      return (
-        this.$store.getters.getProductById(productId) || {
+ setup(){
+   const route= useRoute()
+   const store= useStore()
+   let productId= route.params.id;
+   let product:Product= store.getters.getProductById(productId) || {
           id: -1,
           title: 'Unknown Product',
           image: '',
@@ -38,10 +40,27 @@ export default defineComponent({
           price: 0,
           description: 'This product is not available.',
           category: '',
-        }
-      );
-    }
-  },
+        
+      }
+      return {
+        product
+      }
+ }
+// ,  computed: {
+//     product(): Product {
+//       const productId = this.$route.params.id;
+//       return (
+//         this.$store.getters.getProductById(productId) || {
+//           id: -1,
+//           title: 'Unknown Product',
+//           image: '',
+//           rating: { rate: 0, count: 0 },
+//           price: 0,
+//           description: 'This product is not available.',
+//           category: '',
+//         }
+//       );
+//     }
 })
 </script>
 
