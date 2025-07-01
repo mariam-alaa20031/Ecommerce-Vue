@@ -7,8 +7,7 @@
                 <div class="footer__item titillium-web-semibold">Categories</div>
                 <a v-for="(value, index) in values" class="footer__pages" :key="index">
                     {{ value }}
-                </a>
-        
+                </a>      
                   </div>
 
            <div class="footer__address">
@@ -48,11 +47,15 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
     name:"pageFooter",
-    data(){
-        return {
-            values:["About Us", "New Arrivals", "Tables","Blog", "Featured","Lamps","Contact Us", "Catalog","Chairs","Sitemap","Brands","Sofas"],
-            copyright: "Copyright &copy; All Rights Reserved 2025"
-  }
+    setup(){
+        
+            const values= ["About Us", "New Arrivals", "Tables","Blog", "Featured","Lamps","Contact Us", "Catalog","Chairs","Sitemap","Brands","Sofas"]
+            const copyright= "Copyright &copy; All Rights Reserved 2025"
+            return{
+                values,
+                copyright
+            }
+  
     }
 })
 

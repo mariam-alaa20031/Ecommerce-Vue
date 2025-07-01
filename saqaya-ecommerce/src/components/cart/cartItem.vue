@@ -1,64 +1,71 @@
 <template>
   <div class="cart" v-for="id in Object.keys(cart)" :key="id">
     <img class="cart__img" :src="fetchProduct(id).image" />
-    <cartItemDescription :product="fetchProduct(id)" :quantity="fetchQuantity(id)"></cartItemDescription>
+    <cartItemDescription
+      :product="fetchProduct(id)"
+      :quantity="fetchQuantity(id)"
+    ></cartItemDescription>
   </div>
   <div class="cart__total titillium-web-bold">
     <div class="cart__total--display">Total:</div>
     <div class="cart__total--price">{{ sum.toFixed(2) + " LE" }}</div>
   </div>
   <router-link to="/checkout" class="checkout titillium-web-regular">
-    <button class="checkout__button"  >checkout</button>
+    <button class="checkout__button">checkout</button>
   </router-link>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Product } from "../../../public/interfaces/Product"
+import { Product } from "../../../public/interfaces/Product";
 import cartItemDescription from "./cartItemDescription.vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "cartItem",
   components: {
     cartItemDescription,
   },
+  setup() {
+    const store = useStore();
 
-  methods: {
+    function fetchQuantity(id: string): number {
+      return store.getters.cartProductCounts[id];
+    }
 
-    fetchQuantity(id:string):number{
-        return this.$store.getters.cartProductCounts[id]
-    },
-   
-    fetchProduct(id: string): Product {
-      const product = this.$store.state.products.find(
+    function fetchProduct(id: string): Product {
+      const product = store.state.products.find(
         (prod: Product) => prod.id.toString() === id
       );
-
       return (
         product || {
           id: -1,
           title: "Unknown Product",
           image: "",
-          rating:{rate:4,count:10},
+          rating: { rate: 4, count: 10 },
           price: 0,
           description: "This product is not available.",
           category: "",
         }
       );
-    },
-  },
-  computed: {
-    sum(): number {
+    }
+
+    function fetchTotal() {
       let sum = 0;
-      this.$store.state.cart.forEach((product: Product) => {
+      store.state.cart.forEach((product: Product) => {
         sum += product.price;
       });
       return sum;
-    },
-    cart(): Record<number, number> {
-      console.log(this.$store.getters.cartProductCounts)
-      return this.$store.getters.cartProductCounts;
-    },
+    }
+    let sum: number = fetchTotal();
+
+    let cart: Record<number, number> = store.getters.cartProductCounts;
+    return {
+      sum,
+      cart,
+      fetchProduct,
+      fetchQuantity,
+    };
   },
 });
 </script>
@@ -88,8 +95,8 @@ export default defineComponent({
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding: 0 20px; 
-  box-sizing: border-box; 
+  padding: 0 20px;
+  box-sizing: border-box;
   text-decoration: none;
   flex-wrap: wrap;
   &__button {
@@ -108,5 +115,4 @@ export default defineComponent({
     }
   }
 }
-
 </style>

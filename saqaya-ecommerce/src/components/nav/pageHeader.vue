@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent} from 'vue';
+import { defineComponent, ref} from 'vue';
 import cartDrawer from "../cart/cartDrawer.vue";
 
 export default defineComponent({
@@ -41,39 +41,40 @@ name: 'pageHeader',
  components: {
     cartDrawer
   },
-  data() {
-    return {
-      cart_selected: false,
-      clickedHome:false,
-      clickedProducts:false,
-      clickedContact:false,
-
-    };
-  }
-,
-methods: {
-  clickLink(link: string) {
+  setup() {
+      let cart_selected=ref(false)
+      let clickedHome= ref(false)
+      let clickedProducts= ref(false)
+      let clickedContact=ref(false)
+      function clickLink(link: string) {
       switch (link) {
         case 'home':
-          this.clickedHome = true;
-          this.clickedProducts = false;
-          this.clickedContact = false;
+          clickedHome.value = true;
+          clickedProducts.value = false;
+          clickedContact.value = false;
           break;
         case 'products':
-          this.clickedHome = false;
-          this.clickedProducts = true;
-          this.clickedContact = false;
+          clickedHome.value = false;
+          clickedProducts.value = true;
+          clickedContact.value = false;
           break;
         case 'contact':
-          this.clickedHome = false; 
-          this.clickedProducts = false;
-          this.clickedContact = true;
+          clickedHome.value = false; 
+          clickedProducts.value = false;
+          clickedContact.value = true;
           break;
         default:
           break;
       }
     }
-}
+    return {
+      cart_selected,
+      clickedHome,
+      clickedProducts,
+      clickedContact,
+      clickLink
+    };
+  }
 })
 
 </script>

@@ -65,7 +65,9 @@ describe("cart item component", () => {
 
   it("displays the correct total sum", () => {
     const total = wrapper.find(".cart__total--price");
-    expect(total.text()).toBe((product1.price+product2.price).toFixed(2)+ " LE");
+    expect(total.text()).toBe(
+      (product1.price + product2.price).toFixed(2) + " LE"
+    );
   });
 
   it("renders checkout button and router-link", () => {
@@ -80,6 +82,8 @@ describe("cart item component", () => {
     expect(wrapper.find(".cart__total").exists()).toBe(true);
     expect(wrapper.find(".cart__total--display").exists()).toBe(true);
     expect(wrapper.find(".cart__total--price").exists()).toBe(true);
-    expect(wrapper.find(".checkout__button").classes()).toContain("checkout__button");
+    expect(wrapper.find(".checkout__button").classes()).toContain(
+      "checkout__button"
+    );
   });
 });

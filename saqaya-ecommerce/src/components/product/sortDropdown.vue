@@ -9,20 +9,22 @@
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue'
+import {ref} from 'vue';
 
 export default defineComponent({
   name:'sortDropdown',
-  data(){
-     return ({
-         selectedSort:"",
-     })
-  },
   emits: ['sortProducts'],
-  methods:{
-    changeSort(){
-      this.$emit('sortProducts',this.selectedSort)
+  setup(_,{emit}) {
+    let selectedSort= ref("")
+    function changeSort(){
+         emit('sortProducts',selectedSort.value)
     }
-  }
+    return {
+      selectedSort,
+      changeSort}
+      
+  },
+  
 })
 </script>
 

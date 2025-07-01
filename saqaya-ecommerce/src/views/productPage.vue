@@ -1,5 +1,5 @@
 <template>
-  <div class="stretch" >
+  <div class="stretch">
     <div class="product">
       <productCard :product="product" :clickable="false" />
       <productDescription :product="product" />
@@ -8,10 +8,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { Product } from '../../public/interfaces/Product';
+import { defineComponent, computed } from 'vue';
+import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
 import productCard from '../components/product/productCard.vue';
 import productDescription from '../components/product/productDescription.vue';
+import { Product } from '../../public/interfaces/Product';
 
 export default defineComponent({
   name: 'productPage',
@@ -19,30 +21,30 @@ export default defineComponent({
     productCard,
     productDescription,
   },
-  props: {
-    clickable: {
-      type: Boolean,
-      required: true
-    }
+  setup() {
+    const route = useRoute();
+    const store = useStore();
+
+    const defaultProduct: Product = {
+      id: -1,
+      title: 'Unknown Product',
+      image: '',
+      rating: { rate: 0, count: 0 },
+      price: 0,
+      description: 'This product is not available.',
+      category: '',
+    };
+
+    const product = computed(() => {
+      const id = Number(route.params.id);
+      return store.getters.getProductById(id) || defaultProduct;
+    });
+
+    return {
+      product,
+    };
   },
- 
-  computed: {
-    product(): Product {
-      const productId = this.$route.params.id;
-      return (
-        this.$store.getters.getProductById(productId) || {
-          id: -1,
-          title: 'Unknown Product',
-          image: '',
-          rating: { rate: 0, count: 0 },
-          price: 0,
-          description: 'This product is not available.',
-          category: '',
-        }
-      );
-    }
-  },
-})
+});
 </script>
 
 <style scoped lang="scss">
