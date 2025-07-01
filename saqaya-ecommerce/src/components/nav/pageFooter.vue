@@ -7,8 +7,7 @@
                 <div class="footer__item titillium-web-semibold">Categories</div>
                 <a v-for="(value, index) in values" class="footer__pages" :key="index">
                     {{ value }}
-                </a>
-        
+                </a>      
                   </div>
 
            <div class="footer__address">

@@ -11,14 +11,7 @@
 import { defineComponent} from 'vue'
 
 export default defineComponent({
-
   name:"homeHeader",
-  components:{
-  },
- 
-
-  
-
 })
 
 </script>
