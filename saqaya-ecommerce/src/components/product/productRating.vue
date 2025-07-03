@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{ rating: Number }>();
+defineProps<{ rating: number }>();
 </script>
 
 <style scoped lang="scss">

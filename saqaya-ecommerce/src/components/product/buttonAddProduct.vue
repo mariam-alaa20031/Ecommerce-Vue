@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import { Product } from "../../../public/interfaces/Product";
 
-defineProps<{ product: Product; add: Function }>();
+defineProps<{ product: Product; add: (product:Product)=>void }>();
 </script>
 <style scoped lang="scss">
 .add {

@@ -20,7 +20,7 @@ import cartItem from "./cartItem.vue";
 
     const store = useCartStore();
     defineProps<{
-      visible: Boolean
+      visible: boolean
     }>()
     const emit = defineEmits<{
       (e: 'close'): void
