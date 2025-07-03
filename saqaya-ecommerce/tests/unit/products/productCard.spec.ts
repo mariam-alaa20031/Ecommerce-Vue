@@ -2,7 +2,8 @@ import { shallowMount, VueWrapper } from "@vue/test-utils";
 import productCard from '../../../src/components/product/productCard.vue';
 import { Rating } from "../../../public/interfaces/Rating";
 import { Product } from "../../../public/interfaces/Product";
-import {createStore} from 'vuex'
+import { createTestingPinia } from '@pinia/testing'
+import { useCartStore } from '../../../src/stores/cartStore'
 
 describe('Product Card component display', () => {
   let wrapper: VueWrapper<any>;
@@ -10,7 +11,7 @@ describe('Product Card component display', () => {
   let product: Product;
   let clickable: boolean;
   let count = 0;
-
+  let store;
   
   beforeAll(() => {
     rate = { rate: 4, count: 10 };
@@ -24,23 +25,17 @@ describe('Product Card component display', () => {
       category: "Female Dresses",
       image: "dummy value",
     };
-    const mockStore = createStore({
-    state: {
-      cart: [product] 
-     },
-     
-    actions:{ 
-      addToCart: jest.fn()}
-  })
-
+  
     clickable = true;
 
     wrapper = shallowMount(productCard, {
       props: { product, clickable },
       global: {
-        plugins:[mockStore]  
-      }
+         plugins: [createTestingPinia()],
+   },
     });
+     store = useCartStore() 
+     store.cart=[product]
   });
 
   beforeEach(() => {
@@ -53,7 +48,6 @@ describe('Product Card component display', () => {
   it('displays correct classes based on clickable set to true', async () => {
     const router = wrapper.find("router-link");
     const div = wrapper.find("div");
-    const img = wrapper.find("img");
     expect(router.classes()[0]).toBe("view");
     expect(router.classes()[1]).toBeUndefined(); // 'only' class should not exist
     expect(div.classes()[0]).toBe("view__card");
@@ -75,7 +69,6 @@ describe('Product Card component display', () => {
   it('displays correct classes based on clickable set to false', async () => {
     await wrapper.setProps({clickable:false})
     const divs = wrapper.findAll("div");
-    const img = wrapper.find("img");
     expect(divs[0].classes()).toContain("only");
     expect(divs[1].classes()).toContain("view__card");
     expect(divs[1].classes()).toContain("only__card");
