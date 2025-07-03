@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 import { Product } from "../../../public/interfaces/Product";
 import cartItem from "./cartItem.vue";
@@ -29,7 +29,7 @@ export default defineComponent({
   },
   setup(_, { emit }) {
     const store = useStore();
-    let cart: Product[] = store.state.cart;
+    const cart = computed(()=>store.state.cart);
     function closeDrawer() {
       emit("close");
     }
