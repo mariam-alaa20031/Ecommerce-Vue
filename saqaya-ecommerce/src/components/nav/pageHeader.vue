@@ -26,7 +26,6 @@ import { ref } from "vue";
 import cartDrawer from "../cart/cartDrawer.vue";
 import menuNav from "./menuNav.vue";
 import headerNav from "./headerNav.vue";
-
 let cartSelected = ref(false);
 
 </script>
@@ -47,14 +46,9 @@ let cartSelected = ref(false);
     display: flex;
     align-items: center;
     gap: 50px;
+    margin-right: auto;
   }
 
-  &__links {
-    display: none;
-    &a {
-      cursor: pointer;
-    }
-  }
 
   &__logo {
     width: 60px;
@@ -80,23 +74,11 @@ let cartSelected = ref(false);
   }
 }
 
-.links__active {
-  font-weight: bold;
-  text-decoration: underline;
-  color: #acaef3;
-}
-
-.links__default {
-  font-weight: normal;
-  text-decoration: none;
-  color: #2c3e50;
-}
-
-@media screen and (min-width: 1000px) {
- 
-  .header__links {
-    display: flex;
-    gap: 40px;
+@media screen and (max-width:1000px) {
+  .header__left{
+       margin-right: 0;
+       justify-content: space-between;
   }
 }
+
 </style>

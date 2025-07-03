@@ -1,5 +1,5 @@
 <template>
-  <div class="links" v-for="(link, index) in linkOptions" :key="index">
+  <div class="links" :class="$attrs.class" v-for="(link, index) in linkOptions" :key="index">
     <a
       @click="clickLink(index)"
       :class="index === activeIndex ? 'links__active' : 'links__default'"
@@ -27,11 +27,11 @@ function clickLink(index: number) {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .links {
   display: none;
 
-  &a {
+  a {
     cursor: pointer;
   }
 
