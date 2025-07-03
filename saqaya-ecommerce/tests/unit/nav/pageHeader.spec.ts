@@ -8,10 +8,7 @@ describe("Page header component", () => {
 
   beforeAll(() => {
     wrapper = shallowMount(pageHeader);
-    wrapper.vm.clickedHome=false;
-    wrapper.vm.clickedProducts=false;
-    wrapper.vm.clickedContact=false;
-    wrapper.vm.cartSeleced=false;
+
   });
 
   it("renders root header with class 'header'", () => {
@@ -19,22 +16,7 @@ describe("Page header component", () => {
     expect(header.exists()).toBe(true);
   });
 
-  it("renders menu button with class 'header__menu'", () => {
-    const menuBtn = wrapper.find(".header__menu");
-    expect(menuBtn.exists()).toBe(true);
-  });
 
-  it("renders three bars with class 'header__bar'", () => {
-    const bars = wrapper.findAll(".header__bar");
-    expect(bars.length).toBe(3);
-  });
-
-  it("displays correct class when cartSelected is true", async () => {
-    wrapper.vm.cartSelected = true;
-    await wrapper.vm.$nextTick();
-    const menu = wrapper.find(".header__menu");
-    expect(menu.classes()).toContain("header__menu-active");
-  });
 
   it("renders left section and logo when cart is not selected", async () => {
     wrapper.vm.cartSelected = false;
@@ -52,24 +34,7 @@ describe("Page header component", () => {
     expect(cartIcon.exists()).toBe(true);
   });
 
-  it("applies correct class to clicked link", async () => {
-    const links = wrapper.findAll("a");
-    expect(links.length).toBeGreaterThan(2);
 
-    await links[0].trigger("click");
-    expect(links[0].classes()).toContain("links__active");
-    expect(links[1].classes()).toContain("links__default");
-    expect(links[2].classes()).toContain("links__default");
-
-    await links[1].trigger("click");
-    expect(links[1].classes()).toContain("links__active");
-    expect(links[0].classes()).toContain("links__default");
-
-    await links[2].trigger("click");
-    expect(links[2].classes()).toContain("links__active");
-    expect(links[0].classes()).toContain("links__default");
-    expect(links[1].classes()).toContain("links__default");
-  });
 
   it("displays cartDrawer when cartSelected is true", async () => {
     wrapper.vm.cartSelected= true;

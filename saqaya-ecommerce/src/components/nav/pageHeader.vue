@@ -1,36 +1,10 @@
 <template>
   <div>
     <div class="header titillium-web-regular">
-      <button
-        class="header__menu"
-        :class="{ 'header__menu-active': cartSelected }"
-      >
-        <div class="header__bar"></div>
-        <div class="header__bar"></div>
-        <div class="header__bar"></div>
-      </button>
+     <menuNav :cartSelected="cartSelected"></menuNav>
       <div class="header__left" v-if="!cartSelected">
         <img src="../../assets/logo.png" class="header__logo" />
-        <div class="header__links">
-          <a
-            @click="clickLink('home')"
-            :class="clickedHome ? 'links__active' : 'links__default'"
-            href="#/"
-            >Home</a
-          >
-          <a
-            @click="clickLink('products')"
-            :class="clickedProducts ? 'links__active' : 'links__default'"
-            href="#/products"
-            >Products</a
-          >
-          <a
-            @click="clickLink('contact')"
-            :class="clickedContact ? 'links__active' : 'links__default'"
-            href="#/contactUs"
-            >Contact us</a
-          >
-        </div>
+       <headerNav></headerNav>
       </div>
       <div class="header__right" v-if="!cartSelected">
         <a>Sign In</a>
@@ -48,34 +22,13 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, ref } from "vue";
+import { ref } from "vue";
 import cartDrawer from "../cart/cartDrawer.vue";
+import menuNav from "./menuNav.vue";
+import headerNav from "./headerNav.vue";
 
 let cartSelected = ref(false);
-let clickedHome = ref(false);
-let clickedProducts = ref(false);
-let clickedContact = ref(false);
-function clickLink(link: string) {
-  switch (link) {
-    case "home":
-      clickedHome.value = true;
-      clickedProducts.value = false;
-      clickedContact.value = false;
-      break;
-    case "products":
-      clickedHome.value = false;
-      clickedProducts.value = true;
-      clickedContact.value = false;
-      break;
-    case "contact":
-      clickedHome.value = false;
-      clickedProducts.value = false;
-      clickedContact.value = true;
-      break;
-    default:
-      break;
-  }
-}
+
 </script>
 
 <style scoped lang="scss">
@@ -89,27 +42,6 @@ function clickLink(link: string) {
   color: #2c3e50;
   border-bottom: 1px solid #ccc;
 
-  &__menu {
-    display: block;
-    margin: 10px 10px;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-  }
-
-  &__menu-active {
-    display: block !important;
-    margin: 10px 10px;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-  }
-  &__bar {
-    width: 30px;
-    height: 2px;
-    background-color: black;
-    margin: 7px 0;
-  }
 
   &__left {
     display: flex;
@@ -161,9 +93,7 @@ function clickLink(link: string) {
 }
 
 @media screen and (min-width: 1000px) {
-  .header__menu {
-    display: none;
-  }
+ 
   .header__links {
     display: flex;
     gap: 40px;
