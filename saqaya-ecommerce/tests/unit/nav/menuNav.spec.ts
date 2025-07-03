@@ -9,19 +9,15 @@ describe("Menu nav component", () => {
   });
 
   it("renders menu with correct number of bars", () => {
-    const menu = wrapper.findAll(".menu__bar");
+    const menu = wrapper.findAll(".menu__button--bar");
     expect(menu.length).toBe(3);
   });
 
-  it("assigns menu--active class when cart selected is true", async () => {
-    await wrapper.setProps({cartSelected:true})
-    const button = wrapper.find(".menu");
-    expect(button.classes()).toContain("menu--active");
-  });
 
-  it("removes menu--active class when cart is not selected ", async () => {
-    await wrapper.setProps({cartSelected:false})
-    const button = wrapper.find(".menu");
-    expect(button.classes()).toHaveLength(1);
+  it("renders menu panel when clicked", async () => {
+    wrapper.vm.clicked=true
+    await wrapper.vm.$nextTick()
+    const button = wrapper.findAll(".menu-panel");
+    expect(button).toHaveLength(1);
   });
 });
