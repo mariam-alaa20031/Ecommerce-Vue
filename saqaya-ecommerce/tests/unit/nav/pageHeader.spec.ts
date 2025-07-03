@@ -8,10 +8,7 @@ describe("Page header component", () => {
 
   beforeAll(() => {
     wrapper = shallowMount(pageHeader);
-    wrapper.vm.clickedHome=false;
-    wrapper.vm.clickedProducts=false;
-    wrapper.vm.clickedContact=false;
-    wrapper.vm.cartSeleced=false;
+
   });
 
   it("renders root header with class 'header'", () => {
@@ -37,24 +34,7 @@ describe("Page header component", () => {
     expect(cartIcon.exists()).toBe(true);
   });
 
-  it("applies correct class to clicked link", async () => {
-    const links = wrapper.findAll("a");
-    expect(links.length).toBeGreaterThan(2);
 
-    await links[0].trigger("click");
-    expect(links[0].classes()).toContain("links__active");
-    expect(links[1].classes()).toContain("links__default");
-    expect(links[2].classes()).toContain("links__default");
-
-    await links[1].trigger("click");
-    expect(links[1].classes()).toContain("links__active");
-    expect(links[0].classes()).toContain("links__default");
-
-    await links[2].trigger("click");
-    expect(links[2].classes()).toContain("links__active");
-    expect(links[0].classes()).toContain("links__default");
-    expect(links[1].classes()).toContain("links__default");
-  });
 
   it("displays cartDrawer when cartSelected is true", async () => {
     wrapper.vm.cartSelected= true;

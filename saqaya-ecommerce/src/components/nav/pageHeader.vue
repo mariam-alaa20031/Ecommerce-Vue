@@ -4,26 +4,7 @@
      <menuNav :cartSelected="cartSelected"></menuNav>
       <div class="header__left" v-if="!cartSelected">
         <img src="../../assets/logo.png" class="header__logo" />
-        <div class="header__links">
-          <a
-            @click="clickLink('home')"
-            :class="clickedHome ? 'links__active' : 'links__default'"
-            href="#/"
-            >Home</a
-          >
-          <a
-            @click="clickLink('products')"
-            :class="clickedProducts ? 'links__active' : 'links__default'"
-            href="#/products"
-            >Products</a
-          >
-          <a
-            @click="clickLink('contact')"
-            :class="clickedContact ? 'links__active' : 'links__default'"
-            href="#/contactUs"
-            >Contact us</a
-          >
-        </div>
+       <headerNav></headerNav>
       </div>
       <div class="header__right" v-if="!cartSelected">
         <a>Sign In</a>
@@ -44,32 +25,10 @@
 import { ref } from "vue";
 import cartDrawer from "../cart/cartDrawer.vue";
 import menuNav from "./menuNav.vue";
+import headerNav from "./headerNav.vue";
 
 let cartSelected = ref(false);
-let clickedHome = ref(false);
-let clickedProducts = ref(false);
-let clickedContact = ref(false);
-function clickLink(link: string) {
-  switch (link) {
-    case "home":
-      clickedHome.value = true;
-      clickedProducts.value = false;
-      clickedContact.value = false;
-      break;
-    case "products":
-      clickedHome.value = false;
-      clickedProducts.value = true;
-      clickedContact.value = false;
-      break;
-    case "contact":
-      clickedHome.value = false;
-      clickedProducts.value = false;
-      clickedContact.value = true;
-      break;
-    default:
-      break;
-  }
-}
+
 </script>
 
 <style scoped lang="scss">
