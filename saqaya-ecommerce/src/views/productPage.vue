@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { useStore } from 'vuex';
+import { useProductStore } from '../stores/productStore';
 import productCard from '../components/product/productCard.vue';
 import productDescription from '../components/product/productDescription.vue';
 import { Product } from '../../public/interfaces/Product';
@@ -23,7 +23,7 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute();
-    const store = useStore();
+    const productStore = useProductStore();
 
     const defaultProduct: Product = {
       id: -1,
@@ -37,7 +37,7 @@ export default defineComponent({
 
     const product = computed(() => {
       const id = Number(route.params.id);
-      return store.getters.getProductById(id) || defaultProduct;
+      return productStore.getProductById(id) || defaultProduct;
     });
 
     return {

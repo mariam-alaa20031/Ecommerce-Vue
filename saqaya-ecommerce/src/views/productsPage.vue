@@ -17,10 +17,10 @@
 <script lang="ts">
 import productCard from "../components/product/productCard.vue";
 import productsHeader from "../components/product/productsHeader.vue";
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed} from "vue";
 import { Product } from "../../public/interfaces/Product";
 import sortDropdown from "../components/product/sortDropdown.vue";
-import { useStore } from "vuex";
+import { useProductStore } from "../stores/productStore";
 
 export default defineComponent({
   name: "productsPage",
@@ -30,8 +30,9 @@ export default defineComponent({
     sortDropdown,
   },
   setup() {
-    const store = useStore();
+    const productStore = useProductStore();
     let selectedSort = ref("");
+    
     function orderProducts(value: string) {
       selectedSort.value = value;
     }
@@ -40,24 +41,24 @@ export default defineComponent({
       let products: Product[];
       switch (selectedSort.value) {
         case "rate-ascending":
-          products = store.getters.sortProductsRatingAsc;
+          products = productStore.sortProductsRatingAsc;
           break;
         case "rate-descending":
-          products = store.getters.sortProductsRatingDesc;
+          products = productStore.sortProductsRatingDesc;
           break;
         case "price-descending":
-          products = store.getters.sortProductsPriceDesc;
+          products = productStore.sortProductsPriceDesc;
           break;
         case "price-ascending":
-          products = store.getters.sortProductsPriceAsc;
+          products = productStore.sortProductsPriceAsc;
           break;
         default:
-          products = store.state.products;
+          products = productStore.products;
       }
       return products;
     }
 
-    let products: Product[] = fetchProductsBasedOnSort();
+    const products = computed(()=> fetchProductsBasedOnSort());
     return {
       selectedSort,
       orderProducts,

@@ -1,11 +1,17 @@
 import { shallowMount, VueWrapper } from "@vue/test-utils";
 import pageHeader from "../../../src/components/nav/pageHeader.vue";
+import '../../../src/assets/logo.png';
+import '../../../src/assets/shopping-cart.png'
 
 describe("Page header component", () => {
   let wrapper: VueWrapper<any>;
 
   beforeAll(() => {
-    wrapper = shallowMount(pageHeader, {});
+    wrapper = shallowMount(pageHeader);
+    wrapper.vm.clickedHome=false;
+    wrapper.vm.clickedProducts=false;
+    wrapper.vm.clickedContact=false;
+    wrapper.vm.cartSeleced=false;
   });
 
   it("renders root header with class 'header'", () => {
@@ -23,14 +29,16 @@ describe("Page header component", () => {
     expect(bars.length).toBe(3);
   });
 
-  it("displays correct class when cart_selected is true", async () => {
-    await wrapper.setData({ cart_selected: true });
+  it("displays correct class when cartSelected is true", async () => {
+    wrapper.vm.cartSelected = true;
+    await wrapper.vm.$nextTick();
     const menu = wrapper.find(".header__menu");
     expect(menu.classes()).toContain("header__menu-active");
   });
 
   it("renders left section and logo when cart is not selected", async () => {
-    await wrapper.setData({ cart_selected: false });
+    wrapper.vm.cartSelected = false;
+    await wrapper.vm.$nextTick();
     const left = wrapper.find(".header__left");
     const logo = wrapper.find(".header__logo");
     expect(left.exists()).toBe(true);
@@ -63,21 +71,26 @@ describe("Page header component", () => {
     expect(links[1].classes()).toContain("links__default");
   });
 
-  it("displays cartDrawer when cart_selected is true", async () => {
-    await wrapper.setData({ cart_selected: true });
+  it("displays cartDrawer when cartSelected is true", async () => {
+    wrapper.vm.cartSelected= true;
+    await wrapper.vm.$nextTick();
     expect(wrapper.findComponent({ name: "cartDrawer" }).exists()).toBe(true);
   });
 
-  it("hides header left and right when cart_selected is true", async () => {
-    await wrapper.setData({ cart_selected: true });
+  it("hides header left and right when cartSelected is true", async () => {
+    wrapper.vm.cartSelected= true;
+    await wrapper.vm.$nextTick();
     expect(wrapper.find(".header__left").exists()).toBe(false);
     expect(wrapper.find(".header__right").exists()).toBe(false);
   });
 
   it("closes cartDrawer when 'close' is emitted", async () => {
-    await wrapper.setData({ cart_selected: true });
+    wrapper.vm.cartSelected= true;
+    await wrapper.vm.$nextTick();
     const drawer = wrapper.findComponent({ name: "cartDrawer" });
+    expect(drawer.exists()).toBe(true);
     await drawer.vm.$emit("close");
-    expect(wrapper.vm.cart_selected).toBe(false);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.cartSelected).toBe(false);
   });
 });

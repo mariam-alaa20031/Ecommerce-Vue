@@ -2,7 +2,7 @@
 <div>
 <div class="header titillium-web-regular">
 <button class="header__menu"
-:class="{ 'header__menu-active': cart_selected }">
+:class="{ 'header__menu-active': cartSelected }">
      <div class="header__bar">
      </div>
      <div class="header__bar">
@@ -10,7 +10,7 @@
      <div class="header__bar">
      </div>
     </button>
-    <div class="header__left" v-if="!cart_selected">
+    <div class="header__left" v-if="!cartSelected">
     <img src="../../assets/logo.png" class="header__logo"/>
     <div class="header__links">
       <a @click="clickLink('home')" 
@@ -21,14 +21,14 @@
         :class="clickedContact?'links__active':'links__default'" href="#/contactUs">Contact us</a>
     </div>
     </div>
-    <div class="header__right" v-if="!cart_selected">
+    <div class="header__right" v-if="!cartSelected">
     <a >Sign In</a>
-    <button @click="cart_selected=true" class="header__button">
+    <button @click="cartSelected=true" class="header__button">
     <img class="header__cart" src="../../assets/shopping-cart.png"/>
     </button>
   </div>
 </div>
-  <cartDrawer v-if="cart_selected" :visible="cart_selected" @close="cart_selected = false" />
+  <cartDrawer v-if="cartSelected" :visible="cartSelected" @close="cartSelected = false" />
   </div>
 </template>
 
@@ -42,7 +42,7 @@ name: 'pageHeader',
     cartDrawer
   },
   setup() {
-      let cart_selected=ref(false)
+      let cartSelected=ref(false)
       let clickedHome= ref(false)
       let clickedProducts= ref(false)
       let clickedContact=ref(false)
@@ -68,7 +68,7 @@ name: 'pageHeader',
       }
     }
     return {
-      cart_selected,
+      cartSelected,
       clickedHome,
       clickedProducts,
       clickedContact,

@@ -5,7 +5,8 @@ import contactUs from '../views/contactUs.vue'
 import productsPage from '../views/productsPage.vue'
 import productPage from '../views/productPage.vue'
 import notFound from '../components/error/notFound.vue'
-import store from '../store';
+import { useProductStore } from '../stores/productStore';
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -45,10 +46,12 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  
+const productStore= useProductStore()
   if (to.path === '/products') {
-    if (!store.state.products.length) {
+    if (!productStore.products.length) {
       try {
-        await store.dispatch('loadProducts');
+        await productStore.loadProducts();
       } catch (err) {
         console.error('Failed to load products:', err);
         return next(false); 
@@ -59,19 +62,21 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.beforeEach(async (to, from, next) => {
+  
+const productStore= useProductStore()
   if (to.name === 'product') {
     
     const productId = to.params.id;
     
-    if (!store.state.products.length) {
+    if (!productStore.products.length) {
       try {
-        await store.dispatch('loadProducts');
+        await productStore.loadProducts();
       } catch (error) {
         console.error('Error loading products:', error);
         return next(false);
       }
     }
-    const product= store.getters.getProductById(productId)
+    const product= productStore.getProductById(productId+"")
 
     if (!product) {
       console.log("Error fetching product")

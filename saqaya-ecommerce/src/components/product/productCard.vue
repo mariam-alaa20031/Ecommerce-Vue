@@ -21,7 +21,7 @@ import productPrice from "./productPrice.vue";
 import buttonAddProduct from "./buttonAddProduct.vue";
 import { Product } from "../../../public/interfaces/Product";
 import ButtonChangeQuantity from "./buttonChangeQuantity.vue";
-import {useStore} from 'vuex'
+import { useCartStore } from "../../stores/cartStore";
 
 export default defineComponent({
   name: "productCard",
@@ -42,13 +42,13 @@ export default defineComponent({
   
   },
    setup() {
-    const store= useStore()
+    const store= useCartStore()
 
         function addToCart(product: Product) {
-           store.dispatch("addToCart", product);
+           store.addToCart(product)
     }
-      function isProductInCart(product: Product){
-        return store.state.cart.some((prod:Product) => prod.id === product.id);
+       function isProductInCart(product: Product){
+        return store.cart.some((prod:Product) => prod.id === product.id);
 
     }
 
