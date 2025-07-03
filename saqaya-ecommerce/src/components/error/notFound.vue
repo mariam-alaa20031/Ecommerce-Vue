@@ -7,14 +7,8 @@
   </div>
   </div>
 </template>
-<script lang="ts">
-  import {defineComponent} from 'vue'
-  export default defineComponent(
-    {
-        name:"notFound",
-
-    }
-  )
+<script lang="ts" setup>
+  
 </script>
 <style scoped lang="scss">
 .not-found{

@@ -10,36 +10,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from "vue";
+<script lang="ts" setup>
 import { Product } from "../../../public/interfaces/Product";
 import { useCartStore } from "../../stores/cartStore";
 
-export default defineComponent({
-  name: "buttonChangeQuantity",
-  props: {
-    product: { type: Object as PropType<Product>, required: true },
-    add: {
-      type: Function,
-      required: true,
-    },
-  },
-  setup() {
-    const store = useCartStore();
-    function fetchProductQuantity(id: number) {
-      const count = store.cartProductCounts;
-      return count[id];
-    }
-    function decrementFromCart(product: Product) {
-      store.removeFromCart(product);
-    }
+defineProps<{ product: Product; add: Function }>();
 
-    return {
-      decrementFromCart,
-      fetchProductQuantity,
-    };
-  },
-});
+const store = useCartStore();
+function fetchProductQuantity(id: number) {
+  const count = store.cartProductCounts;
+  return count[id];
+}
+function decrementFromCart(product: Product) {
+  store.removeFromCart(product);
+}
 </script>
 <style scoped lang="scss">
 .quantity {

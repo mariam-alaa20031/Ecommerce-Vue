@@ -9,13 +9,9 @@
      </div>
     </button>
 </template>
-<script lang=ts>
-import {defineComponent} from 'vue'
+<script lang=ts setup>
 
-export default defineComponent({
-    name: 'menuNav',
-    props:{
-        cartSelected:{required:true, type: Boolean}
-    }
-})
+
+ defineProps<{cartSelected:boolean}>()
+
 </script>

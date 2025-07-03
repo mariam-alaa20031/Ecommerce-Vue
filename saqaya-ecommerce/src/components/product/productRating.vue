@@ -5,7 +5,7 @@
       :key="index"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 576 512"
-      :class="index < rating ? 'star' : 'blank'"
+      :class="index < Number(rating) ? 'star' : 'blank'"
     >
       <path
         fill="currentColor"
@@ -15,18 +15,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ProductRating',
-  props: {
-    rating: {
-      type: Number,
-      required: true,
-    },
-  },
-});
+<script lang="ts" setup>
+defineProps<{ rating: Number }>();
 </script>
 
 <style scoped lang="scss">
