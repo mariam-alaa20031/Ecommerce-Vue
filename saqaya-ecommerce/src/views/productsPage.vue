@@ -17,7 +17,7 @@
 <script lang="ts">
 import productCard from "../components/product/productCard.vue";
 import productsHeader from "../components/product/productsHeader.vue";
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
 import { Product } from "../../public/interfaces/Product";
 import sortDropdown from "../components/product/sortDropdown.vue";
 import { useStore } from "vuex";
@@ -57,7 +57,7 @@ export default defineComponent({
       return products;
     }
 
-    let products: Product[] = fetchProductsBasedOnSort();
+    const products = computed(()=>fetchProductsBasedOnSort());
     return {
       selectedSort,
       orderProducts,

@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed} from "vue";
 import { Product } from "../../../public/interfaces/Product";
 import cartItemDescription from "./cartItemDescription.vue";
 import { useStore } from "vuex";
@@ -57,9 +57,9 @@ export default defineComponent({
       });
       return sum;
     }
-    let sum: number = fetchTotal();
+    const sum = computed(()=>fetchTotal());
 
-    let cart: Record<number, number> = store.getters.cartProductCounts;
+    const cart= computed(()=>store.getters.cartProductCounts);
     return {
       sum,
       cart,
