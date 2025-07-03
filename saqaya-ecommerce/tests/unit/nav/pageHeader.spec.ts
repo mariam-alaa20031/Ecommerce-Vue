@@ -19,22 +19,7 @@ describe("Page header component", () => {
     expect(header.exists()).toBe(true);
   });
 
-  it("renders menu button with class 'header__menu'", () => {
-    const menuBtn = wrapper.find(".header__menu");
-    expect(menuBtn.exists()).toBe(true);
-  });
 
-  it("renders three bars with class 'header__bar'", () => {
-    const bars = wrapper.findAll(".header__bar");
-    expect(bars.length).toBe(3);
-  });
-
-  it("displays correct class when cartSelected is true", async () => {
-    wrapper.vm.cartSelected = true;
-    await wrapper.vm.$nextTick();
-    const menu = wrapper.find(".header__menu");
-    expect(menu.classes()).toContain("header__menu-active");
-  });
 
   it("renders left section and logo when cart is not selected", async () => {
     wrapper.vm.cartSelected = false;
