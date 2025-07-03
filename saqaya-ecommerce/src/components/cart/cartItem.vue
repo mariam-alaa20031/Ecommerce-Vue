@@ -3,7 +3,7 @@
     <img class="cart__img" :src="fetchProduct(id).image" />
     <cartItemDescription
       :product="fetchProduct(id)"
-      :quantity="fetchQuantity(id)"
+      :quantity="fetchQuantity(Number(id))"
     ></cartItemDescription>
   </div>
   <div class="cart__total titillium-web-bold">
@@ -16,10 +16,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import { Product } from "../../../public/interfaces/Product";
 import cartItemDescription from "./cartItemDescription.vue";
-import { useStore } from "vuex";
+import { useProductStore } from "../../stores/productStore";
+import { useCartStore } from "../../stores/cartStore";
 
 export default defineComponent({
   name: "cartItem",
@@ -27,14 +28,15 @@ export default defineComponent({
     cartItemDescription,
   },
   setup() {
-    const store = useStore();
+    const productStore = useProductStore();
+    const cartStore = useCartStore();
 
-    function fetchQuantity(id: string): number {
-      return store.getters.cartProductCounts[id];
+    function fetchQuantity(id: number): number {
+      return cartStore.cartProductCounts[id];
     }
 
     function fetchProduct(id: string): Product {
-      const product = store.state.products.find(
+      const product = productStore.products.find(
         (prod: Product) => prod.id.toString() === id
       );
       return (
@@ -52,14 +54,14 @@ export default defineComponent({
 
     function fetchTotal() {
       let sum = 0;
-      store.state.cart.forEach((product: Product) => {
+      cartStore.cart.forEach((product: Product) => {
         sum += product.price;
       });
       return sum;
     }
-    let sum: number = fetchTotal();
+    const sum = computed(() => fetchTotal());
+    const cart = computed(() => cartStore.cartProductCounts);
 
-    let cart: Record<number, number> = store.getters.cartProductCounts;
     return {
       sum,
       cart,

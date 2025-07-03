@@ -13,7 +13,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { Product } from "../../../public/interfaces/Product";
-import { useStore } from "vuex";
+import { useCartStore } from "../../stores/cartStore";
 
 export default defineComponent({
   name: "buttonChangeQuantity",
@@ -25,13 +25,13 @@ export default defineComponent({
     },
   },
   setup() {
-    const store = useStore();
+    const store = useCartStore();
     function fetchProductQuantity(id: number) {
-      const count = store.getters.cartProductCounts;
+      const count = store.cartProductCounts;
       return count[id];
     }
     function decrementFromCart(product: Product) {
-      store.dispatch("removeFromCart", product);
+      store.removeFromCart(product);
     }
 
     return {
