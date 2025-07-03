@@ -1,8 +1,8 @@
 import { shallowMount, VueWrapper } from "@vue/test-utils";
 import buttonChangeQuantity from "../../../src/components/product/buttonChangeQuantity.vue";
 import { Product } from "../../../public/interfaces/Product";
-import { createStore } from "vuex";
-
+import { createTestingPinia } from '@pinia/testing'
+import { useCartStore } from '../../../src/stores/cartStore'
 
 describe("button changing quantity of product in cart component", () => {
   let wrapper: VueWrapper<any>;
@@ -21,27 +21,17 @@ describe("button changing quantity of product in cart component", () => {
       image: "dummy value",
     };
 
-    store = createStore({
-      state: {
-        cart: [product],
-      },
-      getters: {
-        cartProductCounts: () => ({ 21: 1 }),
-      },
-      actions: {
-        removeFromCart: jest.fn(),
-      },
-    });
-
     wrapper = shallowMount(buttonChangeQuantity, {
       props: {
         product,
         add: addMock,
       },
-      global: {
-        plugins: [store],
-      },
+       global: {
+         plugins: [createTestingPinia()],
+   },
     });
+      store= useCartStore()
+      store.cart=[product]
   });
 
   it("renders the quantity from store getter", () => {
@@ -51,18 +41,18 @@ describe("button changing quantity of product in cart component", () => {
   });
 
   it("calls store dispatch on decrement button click", async () => {
-    const spyDispatch = jest.spyOn(store, "dispatch");
+    const spyDispatch = jest.spyOn(store, "removeFromCart");
     const minus = wrapper.find(".quantity__decrement");
     await minus.trigger("click");
     expect(spyDispatch).toHaveBeenCalledTimes(1);
-    expect(spyDispatch).toHaveBeenCalledWith("removeFromCart", product);
+    expect(spyDispatch).toHaveBeenCalledWith(product);
   });
 
   it("calls add when increment button is clicked", async () => {
     const plus = wrapper.find(".quantity__increment");
     await plus.trigger("click");
     expect(addMock).toHaveBeenCalledWith(product);
-    expect(store.state.cart.length).toBe(1);
+    expect(store.cart.length).toBe(1);
   });
 
  

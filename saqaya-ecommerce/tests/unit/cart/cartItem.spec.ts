@@ -1,11 +1,14 @@
 import { shallowMount, VueWrapper } from "@vue/test-utils";
 import cartItem from "../../../src/components/cart/cartItem.vue";
 import { Product } from "../../../public/interfaces/Product";
-import {createStore} from 'vuex'
+import { createTestingPinia } from "@pinia/testing";
+import { useCartStore } from "../../../src/stores/cartStore";
+import { useProductStore } from "../../../src/stores/productStore";
 
 describe("cart item component", () => {
   let wrapper: VueWrapper<any>;
-  let mockStore: any;
+  let mockCartStore: any;
+  let mockProductStore:any;
   let product1: Product;
   let product2: Product;
 
@@ -29,26 +32,20 @@ describe("cart item component", () => {
       rating: { rate: 5, count: 20 },
       image: "image2.jpg",
     };
-
-    mockStore = createStore({
-      state: {
-        cart: [product1, product2],
-        products: [product1, product2],
-      },
-      getters: {
-        cartProductCounts: ()=>({
-          1: 2,
-          2: 1,
-        }),
-      }
-    });
-
-    wrapper = shallowMount(cartItem, {
+      wrapper = shallowMount(cartItem, {
       global: {
-        plugins:[mockStore]
+        plugins:[createTestingPinia()]
       },
     });
-  });
+
+    mockCartStore= useCartStore()
+    mockProductStore= useProductStore()
+    mockCartStore.cart=[product1,product2]
+    mockProductStore.products=[product1,product2]
+
+    });
+
+   
 
   it("displays all cart items based on cartProductCounts keys", () => {
     const cartItems = wrapper.findAll(".cart");

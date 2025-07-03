@@ -1,14 +1,15 @@
 import { shallowMount, VueWrapper } from "@vue/test-utils";
 import cartDrawer from "../../../src/components/cart/cartDrawer.vue";
 import { Product } from "../../../public/interfaces/Product";
-import {createStore} from 'vuex'
+import { createTestingPinia } from "@pinia/testing";
+import { useCartStore } from "../../../src/stores/cartStore";
 
 describe("cart drawer component", () => {
   let wrapper: VueWrapper<any>;
   let mockStore: any;
   let product: Product;
 
-  beforeAll(() => {
+  beforeAll(async() =>  {
     product = {
       id: 1,
       title: "Dress",
@@ -19,58 +20,53 @@ describe("cart drawer component", () => {
       image: "image.jpg",
     };
 
-    mockStore = createStore({
-      state:{
-        cart:[]
-      }
-    })
-  });
-
-  function mountDrawer(visible = true, cart: Product[] = []) {
-    mockStore.state.cart = cart;
-
-    return shallowMount(cartDrawer, {
+    wrapper=shallowMount(cartDrawer, {
       props: {
-        visible,
+        visible:true,
       },
-     global: {
-                plugins: [mockStore],
-            
+      global: {
+        plugins: [createTestingPinia()],
       },
     });
-  }
+
+    mockStore = useCartStore();
+    mockStore.cart=[product]
+    await wrapper.vm.$nextTick();
+  });
+
 
   it("shows overlay and drawer when visible is true", () => {
-    wrapper = mountDrawer(true);
     expect(wrapper.find(".overlay").exists()).toBe(true);
     expect(wrapper.find(".drawer").classes()).toContain("open");
   });
 
-  it("doesn't show overlay or open drawer when visible is false", () => {
-    wrapper = mountDrawer(false);
+  it("doesn't show overlay or open drawer when visible is false", async() => {
+    await wrapper.setProps({visible:false});
     expect(wrapper.find(".overlay").exists()).toBe(false);
     expect(wrapper.find(".drawer").classes()).not.toContain("open");
   });
 
   it("emits close event when overlay is clicked", async () => {
-    wrapper = mountDrawer(true);
+    await wrapper.setProps({visible:true});
     const overlay = wrapper.find(".overlay");
     await overlay.trigger("click");
     expect(wrapper.emitted()).toHaveProperty("close");
   });
 
-  it("displays empty message if cart is empty", () => {
-    wrapper = mountDrawer(true, []);
+  it("displays empty message if cart is empty", async() => {
+    mockStore.cart=[]
+    await wrapper.vm.$nextTick();
     expect(wrapper.text()).toContain("Your cart is empty");
   });
 
-  it("renders cartItem component when cart is not empty", () => {
-    wrapper = mountDrawer(true, [product]);
+  it("renders cartItem component when cart is not empty", async () => {
+    mockStore.cart=[product]
+    await wrapper.vm.$nextTick();
+    await wrapper.setProps({visible:true});
     expect(wrapper.findComponent({ name: "cartItem" }).exists()).toBe(true);
   });
 
   it("has correct drawer class structure", () => {
-    wrapper = mountDrawer(true);
     const drawer = wrapper.find(".drawer");
     expect(drawer.exists()).toBe(true);
     expect(drawer.classes()).toContain("drawer");
