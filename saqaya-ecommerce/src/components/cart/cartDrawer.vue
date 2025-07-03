@@ -13,31 +13,23 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent , computed} from "vue";
+<script lang="ts" setup>
+import { computed} from "vue";
 import { useCartStore } from "../../stores/cartStore";
 import cartItem from "./cartItem.vue";
 
-export default defineComponent({
-  name: "cartDrawer",
-  components: {
-    cartItem,
-  },
-  props: {
-    visible: Boolean,
-  },
-  setup(_, { emit }) {
     const store = useCartStore();
+    defineProps<{
+      visible: Boolean
+    }>()
+    const emit = defineEmits<{
+      (e: 'close'): void
+    }>()
     const cart = computed(()=>store.cart);
     function closeDrawer() {
       emit("close");
     }
-    return {
-      cart,
-      closeDrawer,
-    };
-  },
-});
+
 </script>
 
 <style scoped>

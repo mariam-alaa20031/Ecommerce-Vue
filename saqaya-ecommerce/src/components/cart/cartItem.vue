@@ -15,61 +15,46 @@
   </router-link>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from "vue";
+<script lang="ts" setup>
+import { computed } from "vue";
 import { Product } from "../../../public/interfaces/Product";
 import cartItemDescription from "./cartItemDescription.vue";
 import { useProductStore } from "../../stores/productStore";
 import { useCartStore } from "../../stores/cartStore";
 
-export default defineComponent({
-  name: "cartItem",
-  components: {
-    cartItemDescription,
-  },
-  setup() {
-    const productStore = useProductStore();
-    const cartStore = useCartStore();
+const productStore = useProductStore();
+const cartStore = useCartStore();
 
-    function fetchQuantity(id: number): number {
-      return cartStore.cartProductCounts[id];
+function fetchQuantity(id: number): number {
+  return cartStore.cartProductCounts[id];
+}
+
+function fetchProduct(id: string): Product {
+  const product = productStore.products.find(
+    (prod: Product) => prod.id.toString() === id
+  );
+  return (
+    product || {
+      id: -1,
+      title: "Unknown Product",
+      image: "",
+      rating: { rate: 4, count: 10 },
+      price: 0,
+      description: "This product is not available.",
+      category: "",
     }
+  );
+}
 
-    function fetchProduct(id: string): Product {
-      const product = productStore.products.find(
-        (prod: Product) => prod.id.toString() === id
-      );
-      return (
-        product || {
-          id: -1,
-          title: "Unknown Product",
-          image: "",
-          rating: { rate: 4, count: 10 },
-          price: 0,
-          description: "This product is not available.",
-          category: "",
-        }
-      );
-    }
-
-    function fetchTotal() {
-      let sum = 0;
-      cartStore.cart.forEach((product: Product) => {
-        sum += product.price;
-      });
-      return sum;
-    }
-    const sum = computed(() => fetchTotal());
-    const cart = computed(() => cartStore.cartProductCounts);
-
-    return {
-      sum,
-      cart,
-      fetchProduct,
-      fetchQuantity,
-    };
-  },
-});
+function fetchTotal() {
+  let sum = 0;
+  cartStore.cart.forEach((product: Product) => {
+    sum += product.price;
+  });
+  return sum;
+}
+const sum = computed(() => fetchTotal());
+const cart = computed(() => cartStore.cartProductCounts);
 </script>
 
 <style scoped lang="scss">
