@@ -15,9 +15,9 @@ describe("Page footer component", () => {
     expect(wrapper.find(".footer__grid").exists()).toBe(true);
   });
 
-  it("renders 3 items with class 'footer__item'", () => {
+  it("renders 2 items with class 'footer__item'", () => {
     const items = wrapper.findAll(".footer__item");
-    expect(items.length).toBe(3);
+    expect(items.length).toBe(2);
   });
 
   it("renders all page links with class 'footer__pages'", () => {

@@ -5,15 +5,17 @@ const config: Config.InitialOptions = {
   testEnvironment: 'jsdom',
   transform: {
     '^.+\\.vue$': '@vue/vue3-jest',
-    '^.+\\.[tj]s?$': 'ts-jest',
+    '^.+\\.[tj]s$': 'ts-jest',
+    '^.+\\.mjs$': 'babel-jest', 
   },
-  transformIgnorePatterns: ['node_modules/(?!(axios|axios/.+))'],
-
-  moduleFileExtensions: ['ts', 'js', 'vue', 'json'],
+  transformIgnorePatterns: [
+    '<rootDir>/node_modules/(?!(axios|@vueuse/core|@vueuse/shared)/)', 
+  ],
+  moduleFileExtensions: ['ts', 'js', 'vue', 'json', 'mjs'],
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
     '\\.(png|jpe?g|gif|webp|svg)$': '<rootDir>/tests/__mocks__/fileMock.ts',
-     "^axios$": "axios/dist/node/axios.cjs"
+    '^axios$': 'axios/dist/node/axios.cjs',
   },
 };
 
