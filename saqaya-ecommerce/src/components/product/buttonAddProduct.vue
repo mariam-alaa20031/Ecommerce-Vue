@@ -26,7 +26,7 @@ defineProps<{ product: Product; add: (product:Product)=>void }>();
   .add {
     width: 100%;
     padding: 0.5rem 1rem; 
-    font-size: 0.5rem;    
+    font-size: 0.7rem;    
   }
 }
 </style>

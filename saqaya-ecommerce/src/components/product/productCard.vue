@@ -83,7 +83,6 @@ function isProductInCart(product: Product) {
 .only {
   margin-left: 4%;
   cursor: default;
-
   &:hover {
     box-shadow: none;
     transform: none;
@@ -121,8 +120,11 @@ function isProductInCart(product: Product) {
   }
 
   .only {
-    margin-left: 2%;
-
+    margin-left: 0%;
+    border:1.5px solid  #2e4d73;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius:0;
+    z-index: 10;
     &--img {
       width: 80px;
       height: 80px;
@@ -131,7 +133,6 @@ function isProductInCart(product: Product) {
 
   &:hover {
     cursor:default;
-    box-shadow: none;
     transform: none;
   }
   }

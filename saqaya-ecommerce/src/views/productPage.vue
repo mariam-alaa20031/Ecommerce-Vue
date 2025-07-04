@@ -66,5 +66,11 @@ export default defineComponent({
     height: auto;
     padding: 0 1rem;    
   }
-}
+
+  .product {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1rem 0;
+    height: auto;  
+  }}
 </style>
