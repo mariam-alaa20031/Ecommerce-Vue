@@ -62,7 +62,7 @@ describe("cart item component", () => {
   it("displays the correct total sum", () => {
     const total = wrapper.find(".cart__total--price");
     expect(total.text()).toBe(
-      (product1.price + product2.price).toFixed(2) + " LE"
+      Number((product1.price + product2.price).toFixed(2)) + " LE"
     );
   });
 

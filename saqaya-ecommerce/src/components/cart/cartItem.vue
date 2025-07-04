@@ -8,7 +8,7 @@
   </div>
   <div class="cart__total titillium-web-bold">
     <div class="cart__total--display">Total:</div>
-    <div class="cart__total--price">{{ sum.toFixed(2) + " LE" }}</div>
+    <div class="cart__total--price">{{ Number(sum.toFixed(2)) + " LE" }}</div>
   </div>
   <router-link to="/checkout" class="checkout titillium-web-regular">
     <button class="checkout__button">checkout</button>
