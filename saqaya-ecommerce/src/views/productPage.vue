@@ -49,7 +49,6 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .stretch {
-  height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,19 +57,20 @@ export default defineComponent({
 .product {
   display: flex;
   align-items: center;
+  gap: 2rem;      
   margin: 25px 0;
-  height: 400px;
 }
+
 @media (max-width: 600px) {
   .stretch {
-    height: auto;
-    padding: 0 1rem;    
+    padding: 0 1rem;
   }
 
   .product {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;   
     margin: 1rem 0;
-    height: auto;  
-  }}
+  }
+}
 </style>
