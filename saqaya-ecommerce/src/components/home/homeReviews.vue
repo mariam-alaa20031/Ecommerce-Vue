@@ -39,7 +39,7 @@
     &--review {
       font-size: 1.2em;
       color: #555;
-      max-width: 70%;
+      max-width: 85%;
     }
   }
 }
