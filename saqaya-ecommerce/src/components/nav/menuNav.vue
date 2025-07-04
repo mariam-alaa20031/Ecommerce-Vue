@@ -49,7 +49,7 @@ const clicked = ref(false)
   background: white;
   padding: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  z-index: 10;
+  z-index: 12;
 
   @media (min-width: 1000px) {
     display: none; 
