@@ -1,42 +1,51 @@
 <template>
-  <div class="menu">
-    <button class="menu__button" @click="clicked = true" >
+  <div class="menu" ref="menuRef">
+    <button class="menu__button" @click="clicked = true">
       <div class="menu__button--bar"></div>
       <div class="menu__button--bar"></div>
       <div class="menu__button--bar"></div>
     </button>
-    <div v-if="clicked" class="menu-panel" @mouseleave="clicked=!clicked">
+
+    <div
+      v-if="clicked"
+      class="menu-panel"
+      @mouseleave="clicked = false"
+    >
       <headerNav />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import headerNav from './headerNav.vue'
+import { onClickOutside } from '@vueuse/core'
 
 const clicked = ref(false)
+const menuRef = ref<HTMLElement | null>(null)
 
-
+onClickOutside(menuRef, () => {
+  clicked.value = false
+})
 </script>
 
 <style scoped lang="scss">
 .menu{
   border: 1px solid rgb(254, 255, 255);
   position: relative;
-&__button{
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin: 10px;
+  &__button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
 
-  &--bar {
-    width: 30px;
-    height: 2px;
-    background-color: black;
-    margin: 6px 0;
+    &--bar {
+      width: 30px;
+      height: 2px;
+      background-color: black;
+      margin: 6px 0;
+    }
   }
-}
   @media (min-width: 1000px) {
     display: none; 
   }
