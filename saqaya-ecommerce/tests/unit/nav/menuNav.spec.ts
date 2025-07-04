@@ -5,7 +5,7 @@ describe("Menu nav component", () => {
   let wrapper: VueWrapper<any>;
 
   beforeAll(() => {
-    wrapper = shallowMount(menuNav, { props: { cartSelected: false } });
+    wrapper = shallowMount(menuNav );
   });
 
   it("renders menu with correct number of bars", () => {

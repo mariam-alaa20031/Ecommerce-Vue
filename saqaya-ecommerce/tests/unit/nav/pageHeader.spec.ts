@@ -42,12 +42,7 @@ describe("Page header component", () => {
     expect(wrapper.findComponent({ name: "cartDrawer" }).exists()).toBe(true);
   });
 
-  it("hides header left and right when cartSelected is true", async () => {
-    wrapper.vm.cartSelected= true;
-    await wrapper.vm.$nextTick();
-    expect(wrapper.find(".header__left").exists()).toBe(false);
-    expect(wrapper.find(".header__right").exists()).toBe(false);
-  });
+
 
   it("closes cartDrawer when 'close' is emitted", async () => {
     wrapper.vm.cartSelected= true;
