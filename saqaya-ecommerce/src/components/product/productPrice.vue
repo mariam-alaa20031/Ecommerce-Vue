@@ -1,7 +1,7 @@
 <template>
   <div class="details titillium-web-semibold">
     <div class="details__price" :class="!clickable ? 'singleProductPage' : ''">
-      {{ Number(price.toFixed(2)) }} EGP
+      {{ price.toFixed(2) }} EGP
     </div>
   </div>
 </template>

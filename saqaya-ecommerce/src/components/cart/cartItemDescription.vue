@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="details__price titillium-web-semibold">
-      {{ product.price * quantity }}
+      {{ (product.price * quantity).toFixed(2) }}
     </div>
   </div>
 </template>
