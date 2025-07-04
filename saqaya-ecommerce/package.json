@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "predeploy": "npm run build",
+    "deploy":   "gh-pages -d dist"
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -34,6 +36,7 @@
     "babel-jest": "^27.0.6",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "gh-pages": "^6.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "sass": "^1.32.7",
@@ -48,11 +51,11 @@
       "node": true
     },
     "globals": {
-    "defineProps": "readonly",
-    "defineEmits": "readonly",
-    "defineExpose": "readonly",
-    "withDefaults": "readonly"
-  },
+      "defineProps": "readonly",
+      "defineEmits": "readonly",
+      "defineExpose": "readonly",
+      "withDefaults": "readonly"
+    },
     "extends": [
       "plugin:vue/vue3-essential",
       "eslint:recommended",
@@ -79,5 +82,7 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "homepage": "https://mariam-alaa20031.github.io/Ecommerce-Vue"
+ 
 }

@@ -25,14 +25,12 @@
 
 <script lang="ts" setup>
 import { Product } from "../../../public/interfaces/Product";
-import { PropType } from "vue";
 import productPrice from "./productPrice.vue";
 import buttonAddProduct from "./buttonAddProduct.vue";
 import buttonChangeQuantity from "./buttonChangeQuantity.vue";
 import { useCartStore } from "../../stores/cartStore";
 
-// Props
-const props = defineProps<{
+defineProps<{
   product: Product;
   clickable: boolean;
 }>();
