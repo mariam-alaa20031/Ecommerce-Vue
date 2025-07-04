@@ -49,7 +49,7 @@ function fetchProduct(id: string): Product {
 function fetchTotal() {
   let sum = 0;
   cartStore.cart.forEach((product: Product) => {
-    sum += product.price;
+    sum += Number(product.price.toFixed(2));
   });
   return sum;
 }
