@@ -35,6 +35,7 @@ defineProps<{
 @media (max-width: 600px) {
   .description {
     width: 100%;
+    padding-right:5px;
 
     &__title {
       font-size: 1.5rem;   
