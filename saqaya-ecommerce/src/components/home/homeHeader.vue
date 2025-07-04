@@ -41,5 +41,20 @@
         max-width:70%;
     }
 }
-
+@media (max-width: 600px) {
+  .description {
+    margin: 0 16px 20px;
+    padding: 16px;
+    max-width: 100%;
+    height: auto;
+  
+  }
+  .description h1 {
+    font-size: 1.5em;
+  }
+  .description p {
+    font-size: 1em;
+    max-width: 100%;
+  }
+}
 </style>

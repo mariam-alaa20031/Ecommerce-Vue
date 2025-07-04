@@ -38,4 +38,24 @@
     }}
 }
 
+@media (max-width: 600px) {
+  .header {
+    &__description {
+      height: auto;
+      padding: 16px;
+      margin: 0 16px 20px;
+      max-width: 100%;
+
+      h1 {
+        font-size: 1.5em; 
+      }
+
+      p {
+        font-size: 1em;    
+        max-width: 100%;    
+      }
+    }
+  }
+}
+
 </style>
