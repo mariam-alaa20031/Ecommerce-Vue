@@ -47,6 +47,8 @@
     padding: 16px;
     max-width: 100%;
     height: auto;
+    padding:5px;
+    margin:0 5px 10px 5px;
   
   }
   .description h1 {
