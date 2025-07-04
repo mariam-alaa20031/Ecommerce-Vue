@@ -107,10 +107,11 @@ function isProductInCart(product: Product) {
     height: 120px;
     width: 120px;
 
-    &:hover {
-      box-shadow: none;
-      transform: none;
-    }
+   &:hover {
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
   }
 
   .view__card {
@@ -127,6 +128,12 @@ function isProductInCart(product: Product) {
       height: 80px;
       margin-bottom: 3px;
     }
+
+  &:hover {
+    cursor:default;
+    box-shadow: none;
+    transform: none;
+  }
   }
 }
 </style>

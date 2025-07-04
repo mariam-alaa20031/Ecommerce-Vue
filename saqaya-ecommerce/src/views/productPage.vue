@@ -64,13 +64,7 @@ export default defineComponent({
 @media (max-width: 600px) {
   .stretch {
     height: auto;
-    padding: 0 1rem;    /* give a little breathing room */
+    padding: 0 1rem;    
   }
-
-  .product {
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 1rem 0;
-    height: auto;      
-  }}
+}
 </style>

@@ -37,7 +37,7 @@ defineProps<{
     width: 100%;
 
     &__title {
-      font-size: 1.75rem;   
+      font-size: 1.5rem;   
     }
 
     &__category {
