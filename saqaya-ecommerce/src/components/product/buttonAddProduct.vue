@@ -25,8 +25,8 @@ defineProps<{ product: Product; add: (product:Product)=>void }>();
 @media (max-width: 600px) {
   .add {
     width: 100%;
-    padding: 0.75rem 1rem; 
-    font-size: 0.875rem;    
+    padding: 6px 3px; 
+    font-size: 0.75rem;    
   }
 }
 </style>

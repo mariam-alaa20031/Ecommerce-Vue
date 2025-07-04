@@ -40,5 +40,17 @@ function decrementFromCart(product: Product) {
   }
 }
 
+@media (max-width: 600px) {
+  .quantity {
+    width: 70px;              
+  }
+
+  .quantity__decrement,
+  .quantity__increment,
+  .quantity__value {
+    font-size: 14px;         
+  }
+}
+
 
 </style>
