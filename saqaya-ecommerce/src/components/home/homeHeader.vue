@@ -45,7 +45,7 @@
   .description {
     max-width: 100%;
     height: auto;
-    padding:5px;
+    padding:10px;
     margin:0 5px 10px 5px;
   
   }

@@ -21,4 +21,12 @@ defineProps<{ product: Product; add: (product:Product)=>void }>();
     color: #2e4d73;
   }
 }
+
+@media (max-width: 600px) {
+  .add {
+    width: 100%;
+    padding: 0.75rem 1rem; 
+    font-size: 0.875rem;    
+  }
+}
 </style>

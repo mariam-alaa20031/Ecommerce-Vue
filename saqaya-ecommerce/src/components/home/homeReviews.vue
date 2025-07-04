@@ -47,7 +47,7 @@
 @media (max-width: 600px) {
   .header {
     max-width: 100%;
-    padding: 5px;
+    padding: 10px;
     margin: 0 5px 10px 5px;
 
     h1 {

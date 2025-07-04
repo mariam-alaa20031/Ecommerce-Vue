@@ -31,4 +31,12 @@
   color: black;
   text-decoration: none;
 }
+
+@media screen  and (max-width:600px){
+
+  .singleProductPage{
+    font-size: 0.875rem;
+  }
+  
+}
 </style>
