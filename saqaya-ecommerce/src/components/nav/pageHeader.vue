@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="header titillium-web-regular">
-     <menuNav :cartSelected="cartSelected"></menuNav>
-      <div class="header__left" v-if="!cartSelected">
+     <menuNav></menuNav>
+      <div class="header__left" >
         <img src="../../assets/logo.png" class="header__logo" />
        <headerNav></headerNav>
       </div>

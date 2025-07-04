@@ -15,12 +15,9 @@
 import { ref, watch } from 'vue'
 import headerNav from './headerNav.vue'
 
-const props = defineProps<{ cartSelected: boolean }>()
 const clicked = ref(false)
 
-watch(() => props.cartSelected, open => {
-  if (open) clicked.value = false
-})
+
 </script>
 
 <style scoped lang="scss">
