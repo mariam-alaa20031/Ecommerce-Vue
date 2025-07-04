@@ -101,4 +101,11 @@ import cartItem from "./cartItem.vue";
 .drawer.open {
   right: 0;
 }
+
+@media (max-width: 600px) {
+  .drawer {
+    width: 50%;   
+  }
+}
+
 </style>

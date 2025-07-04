@@ -102,4 +102,27 @@ const cart = computed(() => cartStore.cartProductCounts);
     }
   }
 }
+@media (max-width: 600px) {
+  .cart {
+    padding: 10px;
+  }
+
+  .cart__img {
+    width: 40px;
+    height: 40px;
+    margin-right: 0.75rem;
+  }
+
+  .cart__total {
+    padding: 10px 0;
+    font-size: 0.75rem;
+    margin-right:0.75rem;
+    margin-left:0.75rem;
+  }
+
+  .checkout__button {
+    width: auto;
+    font-size: 0.75rem;
+  }
+}
 </style>

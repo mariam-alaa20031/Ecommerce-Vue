@@ -55,4 +55,19 @@ defineProps<{
     align-items: flex-start;
   }
 }
+
+@media (max-width: 600px) {
+  .details__description--title {
+    font-size: 0.75rem;
+
+  }
+
+  .details__description--category {
+    font-size: 0.7rem;
+  }
+
+  .details__price {
+    font-size: 0.75rem;
+  }
+}
 </style>
