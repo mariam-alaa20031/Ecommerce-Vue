@@ -45,7 +45,6 @@ function isProductInCart(product: Product) {
   return store.cart.some((prod: Product) => prod.id === product.id);
 }
 </script>
-
 <style scoped lang="scss">
 .view {
   cursor: pointer;
@@ -99,6 +98,35 @@ function isProductInCart(product: Product) {
     width: 100px;
     height: 100px;
     margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .view {
+    padding: 10px;
+    height: 120px;
+    width: 120px;
+
+    &:hover {
+      box-shadow: none;
+      transform: none;
+    }
+  }
+
+  .view__card {
+    &--img {
+      width: 50px;
+    }
+  }
+
+  .only {
+    margin-left: 2%;
+
+    &--img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 3px;
+    }
   }
 }
 </style>

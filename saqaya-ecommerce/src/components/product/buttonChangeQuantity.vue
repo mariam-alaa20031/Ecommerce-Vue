@@ -39,4 +39,6 @@ function decrementFromCart(product: Product) {
     cursor: pointer;
   }
 }
+
+
 </style>

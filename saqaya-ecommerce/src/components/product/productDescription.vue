@@ -32,4 +32,20 @@ defineProps<{
     text-decoration: none;
   }
 }
+@media (max-width: 600px) {
+  .description {
+    width: 100%;
+
+    &__title {
+      font-size: 1.75rem;   
+    }
+
+    &__category {
+      font-size: 1rem;     
+    }
+
+    &__details {
+      font-size: 0.875rem;  
+    }
+  }}
 </style>
