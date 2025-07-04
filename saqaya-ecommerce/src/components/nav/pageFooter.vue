@@ -4,7 +4,6 @@
       <div class="footer__grid">
         <div class="footer__item titillium-web-semibold">Navigate</div>
         <div class="footer__item titillium-web-semibold">Collection</div>
-        <div class="footer__item titillium-web-semibold">Categories</div>
         <a v-for="(value, index) in values" class="footer__pages" :key="index">
           {{ value }}
         </a>
@@ -49,14 +48,8 @@ const values = [
   "New Arrivals",
   "Tables",
   "Blog",
-  "Featured",
-  "Lamps",
-  "Contact Us",
-  "Catalog",
-  "Chairs",
-  "Sitemap",
-  "Brands",
-  "Sofas",
+
+ 
 ];
 const copyright = "Copyright &copy; All Rights Reserved 2025";
 </script>
@@ -77,7 +70,7 @@ const copyright = "Copyright &copy; All Rights Reserved 2025";
   }
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     row-gap: 13px;
     column-gap: 80px;
   }

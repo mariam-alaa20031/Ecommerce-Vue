@@ -52,6 +52,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height:400px;
 }
 
 .product {
@@ -59,16 +60,19 @@ export default defineComponent({
   align-items: center;
   gap: 2rem;      
   margin: 25px 0;
+  height:400px;
 }
 
 @media (max-width: 600px) {
   .stretch {
     padding: 0 1rem;
+    height:auto;
   }
 
   .product {
     flex-direction: column;
     align-items: flex-start;
+    height:auto;
     gap: 1rem;   
     margin: 1rem 0;
   }
