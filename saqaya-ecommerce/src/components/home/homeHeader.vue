@@ -43,8 +43,6 @@
 }
 @media (max-width: 600px) {
   .description {
-    margin: 0 16px 20px;
-    padding: 16px;
     max-width: 100%;
     height: auto;
     padding:5px;

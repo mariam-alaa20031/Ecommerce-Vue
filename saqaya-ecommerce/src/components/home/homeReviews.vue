@@ -47,7 +47,25 @@ h1 {
     font-size: 2em;
     margin-bottom: 10px;
   }
-
+@media (max-width: 600px) {
+  .header {
+    max-width: 100%;
+    height: auto;
+    padding:5px;
+    margin:0 5px 10px 5px;
+  
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  &__description{
+    height:auto;
+  }
+  &__description--reviews{
+    font-size: 1em;
+    max-width: 100%;
+  }
+}
  
 
 </style>
