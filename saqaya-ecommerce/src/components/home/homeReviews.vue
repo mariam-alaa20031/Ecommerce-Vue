@@ -34,7 +34,7 @@
     align-items: flex-end;
     text-align: justify;
     justify-content: flex-start;
-    height: 300px;
+    height: auto;
 
     &--review {
       font-size: 1.2em;
