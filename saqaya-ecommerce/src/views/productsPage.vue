@@ -110,7 +110,7 @@ import filterProducts from "@/components/product/filterProducts.vue";
   .sort{
     width:100%;
     justify-content:space-evenly;
-    gap:40px;
+    gap:35px;
   }
 }
 
@@ -118,6 +118,11 @@ import filterProducts from "@/components/product/filterProducts.vue";
   .products__product {
     width: 30%;
    
+  }
+  .sort{
+    width:100%;
+    justify-content:center;
+    gap:20px;
   }
 }
 </style>
