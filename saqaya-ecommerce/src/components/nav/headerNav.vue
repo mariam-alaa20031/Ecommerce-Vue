@@ -23,14 +23,12 @@ const linkOptions = [
       (e: 'close'): void
     }>()
     
-function closePanel() {
-      emit("close");
-    }
 const activeIndex = ref(0);
 
 function clickLink(index: number) {
   activeIndex.value = index;
-  closePanel();
+  emit('close');
+
 }
 
 </script>
