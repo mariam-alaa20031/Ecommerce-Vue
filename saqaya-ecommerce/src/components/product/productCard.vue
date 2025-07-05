@@ -111,11 +111,7 @@ function isProductInCart(product: Product) {
     transform: scale(1.05);
     transition: transform 0.2s ease-in-out;
   }
-  &__card {
-    &--img {
-      width: 50px;
-    }
-  }}
+  }
 
   .only {
     margin-left: 0%;

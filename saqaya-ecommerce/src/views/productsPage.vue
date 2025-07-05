@@ -2,10 +2,10 @@
   <productsHeader></productsHeader>
   <div class="sort">
     <div class="sort__order">
-    <sortDropdown @sortProducts="orderProducts"></sortDropdown>
+      <sortDropdown @sortProducts="orderProducts" />
     </div>
     <div class="sort__filter">
-    <filterProducts @filterProducts="chooseCategory"></filterProducts>
+      <filterProducts @filterProducts="chooseCategory" />
     </div>
   </div>
   <div class="products">
@@ -20,51 +20,56 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, computed } from "vue";
 import productCard from "../components/product/productCard.vue";
 import productsHeader from "../components/product/productsHeader.vue";
-import { ref, computed} from "vue";
-import { Product } from "../../public/interfaces/Product";
 import sortDropdown from "../components/product/sortDropdown.vue";
-import { useProductStore } from "../stores/productStore";
 import filterProducts from "@/components/product/filterProducts.vue";
-   
-    defineProps<{ clickable:boolean }>()
+import { useProductStore } from "../stores/productStore";
+import { Product } from "../../public/interfaces/Product";
 
-    const productStore = useProductStore();
-    let selectedSort = ref("");
-    let selectedFilter= ref("")
+defineProps<{ clickable: boolean }>();
 
-    function orderProducts(value: string) {
-      selectedSort.value = value;
-    }
+const productStore = useProductStore();
+const selectedSort = ref("");
+const selectedFilter = ref("");
 
-    function fetchProductsBasedOnSort(): Product[] {
-      let products: Product[];
-      switch (selectedSort.value) {
-        case "rate-ascending":
-          products = productStore.sortProductsRatingAsc;
-          break;
-        case "rate-descending":
-          products = productStore.sortProductsRatingDesc;
-          break;
-        case "price-descending":
-          products = productStore.sortProductsPriceDesc;
-          break;
-        case "price-ascending":
-          products = productStore.sortProductsPriceAsc;
-          break;
-        default:
-          products = productStore.products;
-      }
-      return products;
-    }
+function orderProducts(value: string) {
+  selectedSort.value = value;
+}
 
-   function chooseCategory(value:string){
-        selectedFilter.value=value
-   }
-    let products = computed(()=> fetchProductsBasedOnSort());
-    products= computed(()=>productStore.filterProductsBasedOnCategory(selectedFilter.value))
-  
+function chooseCategory(value: string) {
+  selectedFilter.value = value;
+}
+
+const products = computed(() => {
+  let sorted: Product[];
+
+  switch (selectedSort.value) {
+    case "rate-ascending":
+      sorted = productStore.sortProductsRatingAsc;
+      break;
+    case "rate-descending":
+      sorted = productStore.sortProductsRatingDesc;
+      break;
+    case "price-descending":
+      sorted = productStore.sortProductsPriceDesc;
+      break;
+    case "price-ascending":
+      sorted = productStore.sortProductsPriceAsc;
+      break;
+    default:
+      sorted = productStore.products;
+  }
+
+  if (selectedFilter.value) {
+    return sorted.filter(
+      (product) => product.category === selectedFilter.value
+    );
+  }
+
+  return sorted;
+});
 </script>
 
 <style scoped lang="scss">
@@ -76,16 +81,17 @@ import filterProducts from "@/components/product/filterProducts.vue";
   padding: 20px;
   align-items: center;
 
-  &__order{
+  &__order {
     display: flex;
-    gap:5px;
+    gap: 5px;
   }
 
-  &__filter{
+  &__filter {
     display: flex;
-    gap:5px;
+    gap: 5px;
   }
 }
+
 .products {
   display: flex;
   flex-direction: row;
@@ -107,22 +113,23 @@ import filterProducts from "@/components/product/filterProducts.vue";
   .products__product {
     width: 30%;
   }
-  .sort{
-    width:100%;
-    justify-content:space-evenly;
-    gap:35px;
+
+  .sort {
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 35px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .products__product {
     width: 30%;
-   
   }
-  .sort{
-    width:100%;
-    justify-content:center;
-    gap:20px;
+
+  .sort {
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
   }
 }
 </style>
