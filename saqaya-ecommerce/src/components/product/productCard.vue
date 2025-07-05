@@ -1,7 +1,7 @@
 <template>
   <router-link :to="`/product/${product.id}`" v-if="clickable" class="view">
-    <div class="view__card" >
-      <img class="view__card--img size" :src="product.image" />
+    <div class="view__card">
+      <img class="view__card--img" :src="product.image" />
       <productPrice :price="Number(product.price)" :clickable="true" />
     </div>
   </router-link>
@@ -90,18 +90,16 @@ function isProductInCart(product: Product) {
 
   &__card {
     color: white;
-  }
+  
 
   &--img {
     border-radius: 0px;
     width: 100px;
     height: 100px;
     margin-bottom: 5px;
-  }
+  }}
 }
-.size{
-  height:50px;
-}
+
 @media (max-width: 600px) {
   .view {
     padding: 10px;
@@ -127,7 +125,7 @@ function isProductInCart(product: Product) {
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius:0;
     z-index: 10;
-    &--img {
+    &__card--img {
       width: 80px;
       height: 80px;
       margin-bottom: 3px;
