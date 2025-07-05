@@ -108,7 +108,8 @@ export default defineComponent({
 
 @media screen and (max-width: 600px) {
   .products__product {
-    width: 50%;
+    width: 30%;
+   
   }
 }
 </style>
