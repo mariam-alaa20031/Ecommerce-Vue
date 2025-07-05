@@ -10,9 +10,8 @@
       v-if="clicked"
       class="menu-panel"
       @mouseleave="clicked = false"
-      @close="clicked=false"
     >
-      <headerNav />
+      <headerNav @close="clicked=false" />
     </div>
   </div>
 </template>
