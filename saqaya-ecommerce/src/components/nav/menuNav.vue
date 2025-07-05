@@ -8,8 +8,9 @@
 
     <div
       v-if="clicked"
-      class="menu-panel"
+      :class="!chosenLink?'menu-panel':''"
       @mouseleave="clicked = false"
+      @closePanel="chosenLink=true"
     >
       <headerNav />
     </div>
@@ -23,7 +24,7 @@ import { onClickOutside } from '@vueuse/core'
 
 const clicked = ref(false)
 const menuRef = ref<HTMLElement | null>(null)
-
+const chosenLink = ref(false)
 onClickOutside(menuRef, () => {
   clicked.value = false
 })

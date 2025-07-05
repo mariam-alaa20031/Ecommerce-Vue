@@ -19,10 +19,18 @@ const linkOptions = [
   { name: "Contact us", href: "#/contactUs" },
 ];
 
+ const emit = defineEmits<{
+      (e: 'close'): void
+    }>()
+    
+function closePanel() {
+      emit("close");
+    }
 const activeIndex = ref(0);
 
 function clickLink(index: number) {
   activeIndex.value = index;
+  closePanel();
 }
 
 </script>
