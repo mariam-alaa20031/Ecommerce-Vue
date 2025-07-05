@@ -6,12 +6,12 @@
       <div class="menu__button--bar"></div>
     </button>
 
-    <div
-      v-if="clicked"
-      class="menu-panel"
-      @mouseleave="clicked = false"
-    >
-      <headerNav @close="clicked=false" />
+    <div v-if="clicked" class="menu-panel" @mouseleave="clicked = false">
+      <headerNav
+        :active-index="activeIndex"
+        @update-index="handleUpdate"
+        @close="clicked = false"
+      />
     </div>
   </div>
 </template>
@@ -22,18 +22,24 @@ import headerNav from './headerNav.vue'
 import { onClickOutside } from '@vueuse/core'
 
 const clicked = ref(false)
+const activeIndex = ref(0)
 const menuRef = ref<HTMLElement | null>(null)
 
 onClickOutside(menuRef, () => {
   clicked.value = false
 })
+
+function handleUpdate(payload: { index: number}) {
+  activeIndex.value = payload.index
+}
 </script>
 
 <style scoped lang="scss">
-.menu{
+.menu {
   border: 1px solid rgb(254, 255, 255);
   position: relative;
-  &__button{
+
+  &__button {
     background: none;
     border: none;
     cursor: pointer;
@@ -46,8 +52,9 @@ onClickOutside(menuRef, () => {
       margin: 6px 0;
     }
   }
+
   @media (min-width: 1000px) {
-    display: none; 
+    display: none;
   }
 }
 
@@ -57,18 +64,18 @@ onClickOutside(menuRef, () => {
   left: 50%;
   background: white;
   padding: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   z-index: 12;
 
   @media (min-width: 1000px) {
-    display: none; 
+    display: none;
   }
 
   :deep(.links) {
     display: flex !important;
     flex-direction: column;
     gap: 8px;
-    width:max-content;
+    width: max-content;
     align-items: flex-start;
   }
 }

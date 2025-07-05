@@ -1,10 +1,16 @@
 <template>
   <div>
     <div class="header titillium-web-regular">
-     <menuNav></menuNav>
-      <div class="header__left" >
+      <menuNav
+        :active-index="activeIndex"
+        @update:index="handleUpdate"
+      />
+      <div class="header__left">
         <img src="../../assets/logo.png" class="header__logo" />
-       <headerNav></headerNav>
+        <headerNav
+          :active-index="activeIndex"
+          @update-index="handleUpdate"
+        />
       </div>
       <div class="header__right" v-if="!cartSelected">
         <a>Sign In</a>
@@ -26,8 +32,13 @@ import { ref } from "vue";
 import cartDrawer from "../cart/cartDrawer.vue";
 import menuNav from "./menuNav.vue";
 import headerNav from "./headerNav.vue";
-let cartSelected = ref(false);
 
+const cartSelected = ref(false);
+const activeIndex = ref(0);
+
+function handleUpdate(payload: { index: number}) {
+  activeIndex.value = payload.index;
+}
 </script>
 
 <style scoped lang="scss">
@@ -41,14 +52,12 @@ let cartSelected = ref(false);
   color: #2c3e50;
   border-bottom: 1px solid #ccc;
 
-
   &__left {
     display: flex;
     align-items: center;
     gap: 50px;
     margin-right: auto;
   }
-
 
   &__logo {
     width: 60px;
@@ -68,17 +77,17 @@ let cartSelected = ref(false);
     border: none;
     cursor: pointer;
   }
+
   &__cart {
     width: 35px;
     height: 35px;
   }
 }
 
-@media screen and (max-width:1000px) {
-  .header__left{
-       margin-right: 0;
-       justify-content: space-between;
+@media screen and (max-width: 1000px) {
+  .header__left {
+    margin-right: 0;
+    justify-content: space-between;
   }
 }
-
 </style>

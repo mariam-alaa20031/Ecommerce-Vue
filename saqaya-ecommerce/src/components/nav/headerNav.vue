@@ -2,7 +2,7 @@
   <div class="links" :class="$attrs.class" v-for="(link, index) in linkOptions" :key="index">
     <a
       @click="clickLink(index)"
-      :class="index === activeIndex ? 'links__active' : 'links__default'"
+      :class="index === props.activeIndex ? 'links__active' : 'links__default'"
       :href="link.href"
     >
       {{ link.name }}
@@ -11,7 +11,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+const props = defineProps<{
+  activeIndex: number;
+}>()
+
+const emit = defineEmits<{
+  (e: 'close'): void;
+  (e: 'update-index', payload: { index: number}): void;
+}>()
 
 const linkOptions = [
   { name: "Home", href: "#/" },
@@ -19,21 +26,15 @@ const linkOptions = [
   { name: "Contact us", href: "#/contactUs" },
 ];
 
- const emit = defineEmits<{
-      (e: 'close'): void
-    }>()
-    
-const activeIndex = ref(0);
-
 function clickLink(index: number) {
-  activeIndex.value = index;
-  emit('close');
-
+  emit('update-index', {
+    index,
+  })
+  emit('close')
 }
-
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .links {
   display: none;
 
@@ -53,6 +54,7 @@ function clickLink(index: number) {
     color: #2c3e50;
   }
 }
+
 @media screen and (min-width: 1000px) {
   .links {
     display: flex;
