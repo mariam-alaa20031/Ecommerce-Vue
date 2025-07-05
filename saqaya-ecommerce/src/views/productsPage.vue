@@ -80,7 +80,8 @@ const products = computed(() => {
   gap: 25px;
   padding: 20px;
   align-items: center;
-
+  margin-left:0;
+  padding-left:0;
   &__order {
     display: flex;
     gap: 5px;
@@ -116,19 +117,19 @@ const products = computed(() => {
 
   .sort {
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: center;
     gap: 35px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .products__product {
-    width: 30%;
+    width: 40%;
   }
 
   .sort {
     width: 100%;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 20px;
   }
 }

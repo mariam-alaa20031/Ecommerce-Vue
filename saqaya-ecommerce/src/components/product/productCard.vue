@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/product/${product.id}`" v-if="clickable" class="view">
+  <router-link :to="`/product/${product.id}`" v-if="clickable" class="view" >
     <div class="view__card">
       <img class="view__card--img" :src="product.image" />
       <productPrice :price="Number(product.price)" :clickable="true" />
@@ -9,16 +9,7 @@
     <div class="view__card only__card">
       <img class="view__card--img only__card--img" :src="product.image" />
       <productPrice :price="product.price" :clickable="false" />
-      <buttonChangeQuantity
-        v-if="isProductInCart(product)"
-        :add="addToCart"
-        :product="product"
-      />
-      <buttonAddProduct
-        :product="product"
-        :add="addToCart"
-        v-else
-      />
+      <buttonsProduct :product="product"></buttonsProduct>
     </div>
   </div>
 </template>
@@ -26,24 +17,13 @@
 <script lang="ts" setup>
 import { Product } from "../../../public/interfaces/Product";
 import productPrice from "./productPrice.vue";
-import buttonAddProduct from "./buttonAddProduct.vue";
-import buttonChangeQuantity from "./buttonChangeQuantity.vue";
-import { useCartStore } from "../../stores/cartStore";
+import buttonsProduct from "./buttonsProduct.vue";
 
 defineProps<{
   product: Product;
   clickable: boolean;
 }>();
 
-const store = useCartStore();
-
-function addToCart(product: Product) {
-  store.addToCart(product);
-}
-
-function isProductInCart(product: Product) {
-  return store.cart.some((prod: Product) => prod.id === product.id);
-}
 </script>
 
 <style scoped lang="scss">
@@ -104,7 +84,7 @@ function isProductInCart(product: Product) {
 
 @media (max-width: 600px) {
   .view {
-    padding: 10px;
+    padding: 20px;
     height: 120px;
     width: 120px;
     border-radius: 50%; 
