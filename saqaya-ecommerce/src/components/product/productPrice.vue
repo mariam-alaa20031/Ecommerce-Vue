@@ -35,7 +35,7 @@
 @media screen  and (max-width:600px){
 
   .singleProductPage{
-    font-size: 0.875rem;
+    font-size: 0.85rem;
   }
   
 }

@@ -116,6 +116,7 @@ function isProductInCart(product: Product) {
   .view__card {
     &--img {
       width: 50px;
+      height:50px;
     }
   }
 
