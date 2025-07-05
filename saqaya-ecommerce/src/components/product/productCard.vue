@@ -45,6 +45,7 @@ function isProductInCart(product: Product) {
   return store.cart.some((prod: Product) => prod.id === product.id);
 }
 </script>
+
 <style scoped lang="scss">
 .view {
   cursor: pointer;
@@ -83,6 +84,7 @@ function isProductInCart(product: Product) {
 .only {
   margin-left: 4%;
   cursor: default;
+
   &:hover {
     box-shadow: none;
     transform: none;
@@ -90,14 +92,14 @@ function isProductInCart(product: Product) {
 
   &__card {
     color: white;
-  
 
-  &--img {
-    border-radius: 0px;
-    width: 100px;
-    height: 100px;
-    margin-bottom: 5px;
-  }}
+    &--img {
+      border-radius: 0px;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 5px;
+    }
+  }
 }
 
 @media (max-width: 600px) {
@@ -105,31 +107,32 @@ function isProductInCart(product: Product) {
     padding: 10px;
     height: 120px;
     width: 120px;
+    border-radius: 50%; 
 
-   &:hover {
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-    transform: scale(1.05);
-    transition: transform 0.2s ease-in-out;
-  }
+    &:hover {
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+      transform: scale(1.05);
+      transition: transform 0.2s ease-in-out;
+    }
   }
 
   .only {
     margin-left: 0%;
-    border:1.5px solid  #2e4d73;
+    border: 1.5px solid #2e4d73;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius:0;
+    border-radius: 0;
     z-index: 10;
-    
+
     &__card--img {
       width: 60px;
       height: 60px;
       margin-bottom: 3px;
     }
 
-  &:hover {
-    cursor:default;
-    transform: none;
-  }
+    &:hover {
+      cursor: default;
+      transform: none;
+    }
   }
 }
 </style>
