@@ -24,6 +24,23 @@ export const useProductStore = defineStore("product", {
     sortProductsRatingDesc: (state) => {
       return state.products.sort((a, b) => b.rating.rate - a.rating.rate);
     },
+
+    filterProductsBasedOnCategory:(state)=>(filter:string)=>{
+      let filtered:Product[];
+          switch(filter){
+            case "men's clothing": filtered=state.products.filter((prod:Product)=> prod.category===filter);
+                                   break;
+            case "women's clothing": filtered=state.products.filter((prod:Product)=> prod.category===filter);
+                                   break;
+            case "jewelery": filtered=state.products.filter((prod:Product)=> prod.category===filter);
+                                   break;      
+            case "electronics": filtered=state.products.filter((prod:Product)=> prod.category===filter);
+                                   break;
+            default: filtered=state.products                                                              
+  
+          }
+          return filtered;
+    }
   },
   actions: {
     async loadProducts() {

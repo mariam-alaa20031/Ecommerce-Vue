@@ -1,7 +1,12 @@
 <template>
   <productsHeader></productsHeader>
   <div class="sort">
+    <div class="sort__order">
     <sortDropdown @sortProducts="orderProducts"></sortDropdown>
+    </div>
+    <div class="sort__filter">
+    <filterProducts @filterProducts="chooseCategory"></filterProducts>
+    </div>
   </div>
   <div class="products">
     <div
@@ -14,25 +19,21 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import productCard from "../components/product/productCard.vue";
 import productsHeader from "../components/product/productsHeader.vue";
-import { defineComponent, ref, computed} from "vue";
+import { ref, computed} from "vue";
 import { Product } from "../../public/interfaces/Product";
 import sortDropdown from "../components/product/sortDropdown.vue";
 import { useProductStore } from "../stores/productStore";
+import filterProducts from "@/components/product/filterProducts.vue";
+   
+    defineProps<{ clickable:boolean }>()
 
-export default defineComponent({
-  name: "productsPage",
-  components: {
-    productCard,
-    productsHeader,
-    sortDropdown,
-  },
-  setup() {
     const productStore = useProductStore();
     let selectedSort = ref("");
-    
+    let selectedFilter= ref("")
+
     function orderProducts(value: string) {
       selectedSort.value = value;
     }
@@ -58,20 +59,12 @@ export default defineComponent({
       return products;
     }
 
-    const products = computed(()=> fetchProductsBasedOnSort());
-    return {
-      selectedSort,
-      orderProducts,
-      products,
-    };
-  },
-  props: {
-    clickable: {
-      type: Boolean,
-      required: false,
-    },
-  },
-});
+   function chooseCategory(value:string){
+        selectedFilter.value=value
+   }
+    let products = computed(()=> fetchProductsBasedOnSort());
+    products= computed(()=>productStore.filterProductsBasedOnCategory(selectedFilter.value))
+  
 </script>
 
 <style scoped lang="scss">
@@ -79,9 +72,19 @@ export default defineComponent({
   display: flex;
   justify-content: flex-end;
   width: 90%;
-  gap: 10px;
+  gap: 25px;
   padding: 20px;
   align-items: center;
+
+  &__order{
+    display: flex;
+    gap:5px;
+  }
+
+  &__filter{
+    display: flex;
+    gap:5px;
+  }
 }
 .products {
   display: flex;
@@ -103,6 +106,11 @@ export default defineComponent({
 @media screen and (max-width: 800px) {
   .products__product {
     width: 30%;
+  }
+  .sort{
+    width:100%;
+    justify-content:space-evenly;
+    gap:40px;
   }
 }
 

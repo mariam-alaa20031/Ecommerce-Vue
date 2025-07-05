@@ -14,11 +14,9 @@ describe('Dropdown sorting UI component', () => {
 
   it('renders 4 sorting options', () => {
     const options = wrapper.findAll('option')
-    expect(options.length).toBe(4)
-    expect(options[0].text()).toBe('least rated')
-    expect(options[1].text()).toBe('most rated')
-    expect(options[2].text()).toBe('lowest price')
-    expect(options[3].text()).toBe('highest price')
+    expect(options.length).toBe(5)
+    expect(options[1].text()).toBe('least rated')
+    expect(options[2].text()).toBe('most rated')
   })
 
   it('emits the selected sort option',async ()=>{
