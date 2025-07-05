@@ -111,13 +111,11 @@ function isProductInCart(product: Product) {
     transform: scale(1.05);
     transition: transform 0.2s ease-in-out;
   }
-  }
-
-  .view__card {
+  &__card {
     &--img {
       width: 50px;
     }
-  }
+  }}
 
   .only {
     margin-left: 0%;
@@ -125,9 +123,10 @@ function isProductInCart(product: Product) {
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius:0;
     z-index: 10;
+    
     &__card--img {
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       margin-bottom: 3px;
     }
 
