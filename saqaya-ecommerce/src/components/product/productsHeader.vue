@@ -38,7 +38,7 @@
     }}
 }
 
-@media (max-width: 600px) {
+@media (max-width: 605px) {
   .header {
     &__description {
       height: auto;
