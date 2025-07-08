@@ -13,6 +13,9 @@ export const useCartStore = defineStore("cart", {
       });
       return counts;
     },
+    getCartItemsCount:(state)=>{
+      return state.cart.length;
+    }
   },
   actions: {
     addToCart(product: Product) {

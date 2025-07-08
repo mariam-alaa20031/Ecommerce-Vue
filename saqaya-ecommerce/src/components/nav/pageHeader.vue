@@ -16,6 +16,7 @@
         <a>Sign In</a>
         <button @click="cartSelected = true" class="header__button">
           <img class="header__cart" src="../../assets/shopping-cart.png" />
+          <div class="header__count ">{{ ordersQuantity==0?"":ordersQuantity }}</div>
         </button>
       </div>
     </div>
@@ -28,17 +29,23 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import cartDrawer from "../cart/cartDrawer.vue";
 import menuNav from "./menuNav.vue";
 import headerNav from "./headerNav.vue";
+import { useCartStore } from "../../stores/cartStore";
 
 const cartSelected = ref(false);
 const activeIndex = ref(0);
+const cartStore= useCartStore();
 
 function handleUpdate(payload: { index: number}) {
   activeIndex.value = payload.index;
 }
+
+const ordersQuantity=computed(()=>{
+  return cartStore.getCartItemsCount;}
+)
 </script>
 
 <style scoped lang="scss">
@@ -76,6 +83,15 @@ function handleUpdate(payload: { index: number}) {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    position:relative;
+  }
+  &__count{
+    position: absolute;
+    top:15%;
+    width:11px;
+    right:35%;
+    background: white;
+    color:rgb(130, 36, 36);
   }
 
   &__cart {
