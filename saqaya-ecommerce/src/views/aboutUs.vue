@@ -3,19 +3,8 @@
 </template>
 
 
-<script lang="ts">
-import { defineComponent} from 'vue';
+<script lang="ts" setup>
 import productsHeader from '../components/product/productsHeader.vue';
-
-export default defineComponent({
-  name: 'aboutUs',
-  components:{
-    productsHeader
-  }
-})  
-
-
-
 </script>
 
 <style scoped lang="scss">

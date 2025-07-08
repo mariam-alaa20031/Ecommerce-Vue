@@ -7,21 +7,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue';
+<script lang="ts" setup>
+import {  computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useProductStore } from '../stores/productStore';
 import productCard from '../components/product/productCard.vue';
 import productDescription from '../components/product/productDescription.vue';
 import { Product } from '../../public/interfaces/Product';
 
-export default defineComponent({
-  name: 'productPage',
-  components: {
-    productCard,
-    productDescription,
-  },
-  setup() {
     const route = useRoute();
     const productStore = useProductStore();
 
@@ -40,11 +33,6 @@ export default defineComponent({
       return productStore.getProductById(id) || defaultProduct;
     });
 
-    return {
-      product,
-    };
-  },
-});
 </script>
 
 <style scoped lang="scss">

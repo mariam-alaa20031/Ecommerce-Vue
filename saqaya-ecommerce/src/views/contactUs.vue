@@ -8,20 +8,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
 import contactHeader from '../components/contact/contactHeader.vue'
 import contactDetails from '../components/contact/contactDetails.vue';
 import contactForm from '../components/contact/contactForm.vue';
 
-export default defineComponent({
-  name: 'contactUs',
-  components: {
-    contactHeader,
-    contactDetails,
-    contactForm
-  }
-});
+
 </script>
 
 <style scoped lang="scss">

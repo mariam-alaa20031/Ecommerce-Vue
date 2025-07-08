@@ -6,20 +6,10 @@
   </div>
 </template>
 
-<script lang="ts">
-
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
 import pageHeader from './components/nav/pageHeader.vue';
 import pageFooter from './components/nav/pageFooter.vue';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    pageHeader,
-    pageFooter,
-  },
-  
-});
 
 </script>
 <style lang="scss">
