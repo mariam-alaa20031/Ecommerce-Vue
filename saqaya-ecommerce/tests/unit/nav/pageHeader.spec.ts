@@ -2,12 +2,36 @@ import { shallowMount, VueWrapper } from "@vue/test-utils";
 import pageHeader from "../../../src/components/nav/pageHeader.vue";
 import '../../../src/assets/logo.png';
 import '../../../src/assets/shopping-cart.png'
+import { createTestingPinia } from '@pinia/testing'
+import { useCartStore } from '../../../src/stores/cartStore'
+import { Product } from "public/interfaces/Product";
+import { Rating } from "public/interfaces/Rating";
 
 describe("Page header component", () => {
   let wrapper: VueWrapper<any>;
+  let store;
+  let rate: Rating;
+  let product: Product;
+  rate = { rate: 4, count: 10 };
+    
+    product = {
+      id: 21,
+      title: "wrap dress",
+      price: 1000,
+      description: "Feel comfortable, feminine in the dress!",
+      rating: rate,
+      category: "Female Dresses",
+      image: "dummy value",
+    };
 
   beforeAll(() => {
-    wrapper = shallowMount(pageHeader);
+     wrapper = shallowMount(pageHeader, {
+          global: {
+             plugins: [createTestingPinia()],
+       },
+        });
+         store = useCartStore() 
+         store.cart=[product]
 
   });
 

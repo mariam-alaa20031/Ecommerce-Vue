@@ -7,7 +7,7 @@ describe("Header links component", () => {
   let wrapper: VueWrapper<any>;
 
   beforeAll(() => {
-    wrapper = shallowMount(headerNav);
+    wrapper = shallowMount(headerNav, {props:{activeIndex:0}});
 
   });
 
@@ -20,6 +20,7 @@ describe("Header links component", () => {
   it("assigns correct classes when 'Home' is clicked", async () => {
     const links = wrapper.findAll("a");
     await links[0].trigger("click");
+    await wrapper.setProps({activeIndex:0})
     expect(links[0].classes()).toContain("links__active");
     expect(links[1].classes()).toContain("links__default");
     expect(links[2].classes()).toContain("links__default");
@@ -29,6 +30,7 @@ describe("Header links component", () => {
   it("assigns correct classes when 'Products' is clicked", async () => {
     const links = wrapper.findAll("a");
     await links[1].trigger("click");
+    await wrapper.setProps({activeIndex:1})
     expect(links[0].classes()).toContain("links__default");
     expect(links[1].classes()).toContain("links__active");
     expect(links[2].classes()).toContain("links__default");
@@ -38,6 +40,7 @@ describe("Header links component", () => {
 
   it("assigns correct classes when 'Contact us' is clicked", async () => {
     const links = wrapper.findAll("a");
+    await wrapper.setProps({activeIndex:2})
     await links[2].trigger("click");
     expect(links[0].classes()).toContain("links__default");
     expect(links[1].classes()).toContain("links__default");
