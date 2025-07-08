@@ -28,8 +28,6 @@ import filterProducts from "@/components/product/filterProducts.vue";
 import { useProductStore } from "../stores/productStore";
 import { Product } from "../../public/interfaces/Product";
 
-defineProps<{ clickable: boolean }>();
-
 const productStore = useProductStore();
 const selectedSort = ref("");
 const selectedFilter = ref("");

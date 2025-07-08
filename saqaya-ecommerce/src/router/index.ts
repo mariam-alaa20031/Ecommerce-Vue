@@ -49,7 +49,7 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   
 const productStore= useProductStore()
-  if (to.path === '/products') {
+  if (to.path === '/products' && !productStore.fetched) {
     if (!productStore.products.length) {
       try {
         await productStore.loadProducts();
@@ -60,32 +60,6 @@ const productStore= useProductStore()
     }
   }
   next();
-});
-
-router.beforeEach(async (to, from, next) => {
-  
-const productStore= useProductStore()
-  if (to.name === 'product') {
-    
-    const productId = to.params.id;
-    
-    if (!productStore.products.length) {
-      try {
-        await productStore.loadProducts();
-      } catch (error) {
-        console.error('Error loading products:', error);
-        return next(false);
-      }
-    }
-    const product= productStore.getProductById(productId+"")
-
-    if (!product) {
-      console.log("Error fetching product")
-      return next({ name: 'notFound' }); 
-    }
-  }
-
-  next(); 
 });
 
 

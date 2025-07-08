@@ -2,9 +2,10 @@ import { defineStore } from "pinia";
 import { Product } from "public/interfaces/Product";
 import axios from "axios";
 
-export const useProductStore = defineStore("product", {
+export const useProductStore = defineStore("products", {
   state: () => ({
     products: [] as Product[],
+    fetched: false as boolean
   }),
   getters: {
     getProductById: (state) => (id: string | number) => {
@@ -25,33 +26,30 @@ export const useProductStore = defineStore("product", {
       return state.products.sort((a, b) => b.rating.rate - a.rating.rate);
     },
 
-    filterProductsBasedOnCategory:(state)=>(filter:string)=>{
-      let filtered:Product[];
-          switch(filter){
-            case "men's clothing": filtered=state.products.filter((prod:Product)=> prod.category===filter);
-                                   break;
-            case "women's clothing": filtered=state.products.filter((prod:Product)=> prod.category===filter);
-                                   break;
-            case "jewelery": filtered=state.products.filter((prod:Product)=> prod.category===filter);
-                                   break;      
-            case "electronics": filtered=state.products.filter((prod:Product)=> prod.category===filter);
-                                   break;
-            default: filtered=state.products                                                              
-  
-          }
-          return filtered;
-    }
+    filterProductsBasedOnCategory: (state) => (filter: string) => {
+      if (
+        filter === "men's clothing" ||
+        filter === "women's clothing" ||
+        filter === "jewelery" ||
+        filter === "electronics"
+      ) {
+        return state.products.filter((prod: Product) => prod.category === filter);
+      }
+      return state.products;
+    },
   },
   actions: {
     async loadProducts() {
-      try {
-        axios.get("https://fakestoreapi.com/products").then((response) => {
-          console.log(response.data);
+      if (!this.fetched) {
+        try {
+          const response = await axios.get("https://fakestoreapi.com/products");
           this.products = response.data;
-        });
-      } catch (error) {
-        console.error("Error fetching products: ", error);
+          this.fetched = true;
+        } catch (error) {
+          console.error("Error fetching products: ", error);
+        }
       }
     },
   },
+  persist: true
 });
