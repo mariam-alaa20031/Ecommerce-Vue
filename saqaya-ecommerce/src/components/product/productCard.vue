@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/product/${product.id}`" v-if="clickable" class="view">
+  <router-link :to="`/product/${product.id}`" v-if="clickable" @click="setProduct(product)" class="view">
     <div class="view__card">
       <img class="view__card--img" :src="product.image" />
       <productPrice :price="Number(product.price)" :clickable="true" />
@@ -18,11 +18,17 @@
 import { Product } from "../../../public/interfaces/Product";
 import productPrice from "./productPrice.vue";
 import buttonsProduct from "./buttonsProduct.vue";
+import { useProductStore } from "../../stores/productStore";
 
+const store=useProductStore()
 defineProps<{
   product: Product;
   clickable: boolean;
 }>();
+
+function setProduct(product:Product){
+     store.product= product;
+}
 </script>
 
 <style scoped lang="scss">
