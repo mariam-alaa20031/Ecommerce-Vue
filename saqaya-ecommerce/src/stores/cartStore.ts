@@ -32,4 +32,5 @@ export const useCartStore = defineStore("cart", {
       this.cart=[]
     }
   },
+  persist:true
 });
