@@ -57,7 +57,7 @@ The app uses a consistent layout that includes:
 
 ---
 
-## 🧩 Architecture
+##  Architecture
 
 ### Root Component (`App.vue`)
 
